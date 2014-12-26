@@ -1,429 +1,288 @@
-<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-<style type="text/css">
-
-    @font-face {
-        font-family: 'Bebas Neue';
-        src: url(./fonts/BebasNeue.woff) format('woff');
-    }
-
-    #circuit circle, #circuit polyline {
-        fill: none;
-        stroke: #fff;
-        stroke-width: 2;
-    }
-
-    .flipV {
-        -webkit-transform: scale(1,-1);
-        -webkit-transform-origin: 50% 50%;
-    }
-
-    .flipH {
-        -webkit-transform: rotate(180deg);
-    }
-
-    @-webkit-keyframes dash {
-        to {
-            stroke-dashoffset: 0;
+    <meta charset="utf-8" />
+    <style>
+        @font-face {
+            font-family: 'Bebas Neue';
+            src: url(./fonts/BebasNeue.woff) format('woff');
         }
-    }
-
-    @-webkit-keyframes pop {
-        0% {
-            -webkit-transform: scale(0,0);
+        body,html {
+            background: #24C7ED;
+            margin:0px;
+            padding:0px;
+            height:100%;
+            font-family:'Bebas Neue';
+            font-size:24px;
+            overflow:hidden;
         }
-        50% {
+
+        table,td,tr {
+            padding:0px;
+            border-spacing:0px;
+        }
+
+        table {
+            color:#fff;
+            table-layout:fixed;
+            overflow:hidden;
+            font-size:36px;
+        }
+
+
+        td {
+            text-align:center;
+        }
+
+        ul {
+            list-style:none;
+            margin:0px;
+            font-size:26px;
+            font-weight:300;
+            padding:0px;
+        }
+        li a, li a:visited {
+            border-bottom: 1px solid #fff;
+            padding: 8px 0 7px 118px;
+            text-align: left;
+            box-sizing: border-box;
+            display:block;
+            width:100%;
+            color:#fff;
+            text-decoration: none;
+        }
+
+        li a.prom,li a.prom:visited {
+            color:#ff5500;
+        }
+
+        @-webkit-keyframes closeMenu {
+            from {
+                left:0px;
+            }
+            to {
+                left:-300px;
+            }
+        }
+
+        @-webkit-keyframes openMenu {
+            to {
+                left: 0px;
+            }
+        }
+
+        #main-container.close {
+            -webkit-animation: closeMenu;
+            -webkit-animation-duration: 0.4s;
+            -webkit-animation-timing-function: cubic-bezier(.6,0,.4,1);
+            -webkit-animation-fill-mode: forwards;
+        }
+
+        #main-container.open {
+            -webkit-animation: openMenu;
+            -webkit-animation-duration: 0.4s;
+            -webkit-animation-timing-function: cubic-bezier(.6,0,.4,1);
+            -webkit-animation-fill-mode: forwards;
+        }
+
+        .footer a, .footer a:visited {
+            display: inline-block;
+            width: 28px;
+            height: 21px;
+            margin: 0 40px 0 40px;
+        }
+        .footer a svg {
+            height:100%;
+            width:100%;
+            transition: 0.3s ease-out;
+        }
+
+        .footer a:hover svg {
             -webkit-transform: scale(1.5,1.5);
         }
-        100% {
-            -webkit-transform: scale(1,1);
-        }
-    }
 
-    @-webkit-keyframes pop2 {
-        0% {
-            -webkit-transform: scale(0,0);
-        }
-        100% {
-            -webkit-transform: scale(1,1);
-        }
-    }
-
-
-    #circuit svg.horizontal polyline {
-        stroke-dasharray: 142;
-        stroke-dashoffset: 142;
-    }
-
-    #circuit svg.vertical polyline {
-        stroke-dasharray: 78;
-        stroke-dashoffset: 78;
-    }
-
-    #circuit svg.angled polyline {
-        stroke-dasharray: 145;
-        stroke-dashoffset: 145;
-    }
-
-    #circuit svg polyline {
-        stroke-dasharray: 145;
-        stroke-dashoffset: 145;
-    }
-
-    #circuit svg circle {
-        -webkit-transform: scale(0,0);
-        -webkit-transform-origin: 50% 50%;
-    }
-
-    div.circuitVisible {
-        display: block;
-    }
-
-    div.circuitHidden {
-        display: none;
-    }     
-    div.circuitVisible svg polyline {
-        -webkit-animation: dash 0.4s ease-out 0.4s forwards;
-    }
-
-    div.circuitVisible svg circle:nth-of-type(1) {
-        -webkit-animation: pop 0.4s cubic-bezier(0,0.2,0.2,1) 0s forwards;
-    }
-
-    div.circuitVisible svg circle:nth-of-type(2) {
-        -webkit-animation: pop2 0.2s ease-out 0.8s forwards;
-    }
-
-    body {
-        background: #38a5c6;
-    }
-
-    @-webkit-keyframes slideClippedCircle {
-        0% {
-            -webkit-transform: translate(0,0);
+        .footer a:nth-child(1):hover svg {
+            fill: #EE3032;
         }
 
-        100% {
-            -webkit-transform: translate(1200px,0);
+        .footer a:nth-child(2):hover svg {
+            fill: #325C94;
         }
-    }
-    
-    @-webkit-keyframes enlargeLogo {
 
-        to {
-            -webkit-transform: scale(1.2,1.2);
+        .footer a:nth-child(3):hover svg {
+            fill: #F20026;
         }
-    }
-
-    #logo svg path {
-        box-shadow: 0px 0px 4px rgba(0,0,0,0.5);
-    }
-
-    #logo.mouseHover circle.clipped {
-        -webkit-transform-origin: 50% 50%;
-        -webkit-animation: slideClippedCircle 0.3s cubic-bezier(0,0.95,1,0.05) 0.0s forwards;
-        -webkit-animation-play-state: running;
-    }
-
-    #circuit a {
-        font-family:'Bebas Neue';
-        font-size: 28px;
-        text-decoration:none;
-        color:#fff;
-    }
-</style>
+    </style>
     <script>
-        var t;
-        var bubble = true;
-        var logoX = 175, logoY = 175, logoScale = 1, logoScaleActual=1;
+        var animatingMenuButton = false;
+        var timer;
+        var line1 = 100, line2 = 1, line3 = 600;
+        var open = true;
+        function animateMenuButton() {
+            if (!animatingMenuButton) {
+                animatingMenuButton = true;
+                if (open) {
+                    line1 = 100; line2 = 1; line3 = 600;
+                }
+                else {
+                    line3 = 100; line2 = 0; line1 = 600;
+                }
+
+                open = !open;
+                timer = setInterval(animateMenuButton, 30);
+
+            }
+
+            var main = document.getElementById("main-container").className = !open ? "open" : "close";
+
+            line1 += ((!open ? 600 : 100) - line1) / 3;
+            line2 += ((!open ? 0 : 1) - line2) / 3;
+            line3 += ((!open ? 100 : 600) - line3) / 3;
+            var lines = document.getElementById("menu").getElementsByTagName("line");
+            lines[0].setAttribute("y2", line1);
+            lines[1].style.opacity = line2;
+            lines[2].setAttribute("y2", line3);
+
+            if (Math.abs(((!open ? 600 : 100) - line1) / 3 < 0.01) && Math.abs(((!open ? 0 : 1) - line2) / 3) < 0.01 && Math.abs((!open ? 100 : 600) - line3) / 3 < 0.01) {
+                clearTimeout(timer);
+                animatingMenuButton = false;
+            }
+        }
     </script>
+
 </head>
 <body>
-    
-
-    <div style="position:absolute; width:100%;height:100%; top:0px; left:0px;">
-        <div style="position:absolute; top:50%; left:50%; height:500px;width:500px; margin-left:-250px; margin-top:-250px;">
-
-            <div style="width:150px; height:150px; margin:175px 0 0 175px; cursor:pointer;" id="logo">
-                <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     viewBox="0 0 595.9 600" enable-background="new 0 0 595.9 600" xml:space="preserve" style="height:150px;width:150px;">
-                <defs>
-                <clipPath id="logoClip">
-                      
-                <path fill="#fff; box-shadow:0px 0px 10px #fff" d="M498.5,236.1c-15.1,0-29.7,0-44.7,0c0.1-1.3,0.1-2.7,0.3-4.1c1.8-13.5,2.1-26.8-0.9-40.2
-			                    c-3.3-14.8-10-27.8-20.4-38.8c-16.4-17.6-36.9-27.7-59.9-33.2c-17.9-4.3-36-5.2-54.2-3.3c-36,3.8-68.1,17.1-96.7,39.2
-			                    c-21.6,16.7-37.8,37.5-47.6,63.1c-3.5,9.2-5.8,18.6-6.4,28.6c-0.7,11.2-0.9,22.3,1.6,33.4c2.8,12.4,8.2,23.5,16.2,33.3
-			                    c17.9,22,41.7,34,69,40c3.7,0.8,7.6,1.2,12,1.9c8-37.5,15.9-74.7,23.9-112.6c-1.5,0-2.9,0-4.3,0c-32.7,0-65.5,0-98.2,0.1
-			                    c-3.3,0-4.3-0.9-4-4.1c0.3-3.2,0.1-6.5,0.1-10.2c36.5,0,72.8,0,109.3,0c1.3-5.7,2.6-11,3.7-16.4c1.7-8.2,3.4-16.4,5.1-24.6
-			                    c2.4-11.7,4.9-23.4,7.3-35.2c0.5-2.6,1-5.2,1.8-7.7c0.3-1,1.6-2.5,2.4-2.5c11.2-0.2,22.4-0.1,34.1-0.1c-1.6,7.6-3.1,14.7-4.5,21.8
-			                    c-3.5,16.9-7.1,33.7-10.6,50.5c-0.8,3.9-1.7,7.7-2.7,11.5c-0.5,2.1,0,2.9,2.3,3.2c10.7,1.5,21.4,2.9,32,4.9
-			                    c24,4.5,45.6,14.7,65.5,28.5c17.6,12.3,31.3,28,37.9,48.7c2.8,8.7,3.6,18,4.8,27.2c0.6,4.9,0.2,9.9-0.1,14.8c-0.1,1.1-1.6,3-2.4,3
-			                    c-13.9,0.2-27.8,0.1-41.6,0c-0.1,0-0.2-0.1-0.7-0.6c0.1-1.8,0.3-3.9,0.5-6.1c2-28.7-6-53.8-27.4-73.9
-			                    c-11.8-11.1-25.6-18.9-40.8-24.5c-10.1-3.7-20.4-6-31-7.3c-2.4-0.3-3,0.7-3.4,2.5c-4.8,22.7-9.7,45.4-14.5,68.1
-			                    c-2.6,12.3-5.2,24.6-7.8,36.9c-0.3,1.5-0.4,3.1-0.6,5c34.7,0,69.2,0,103.7,0c0,5,0,9.5,0,14.5c-1.4,0-2.9,0-4.3,0
-			                    c-32.9,0-65.7,0.1-98.6,0c-3.2,0-4.4,0.6-5.1,4.1c-2.9,14.8-6.3,29.6-9.5,44.4c-2.5,11.7-5.1,23.4-7.5,35.2
-			                    c-0.5,2.4-1.4,2.9-3.5,2.9c-10.6-0.1-21.3,0-32.8,0c6.1-28.9,12.2-57.8,18.3-86.9c-7.4-1.1-14.5-1.8-21.4-3.3
-			                    c-11.5-2.6-23.1-5.1-34.3-9c-16.4-5.7-31.8-13.9-45.7-24.6c-16-12.4-28.5-27.5-34.8-47.1c-4-12.5-5.4-25.3-4.2-38.4
-			                    c2.8-29.1,15.5-53.5,34.9-74.8c19.7-21.7,44.1-36.7,70.5-48.8c17.2-7.9,35-14,53.5-17.8c12-2.5,24.2-4.3,36.3-5.3
-			                    c12.3-1,24.9-1.7,37.2-0.7c15.4,1.2,30.7,3,45.7,7.4c20.2,5.9,39.2,14.3,56.4,26.5c18.7,13.4,32.8,30.4,39.2,53
-			                    c4,14.2,4.6,28.7,2,43.2C498.5,232.7,498.6,234.1,498.5,236.1 M469,372.2c-6.5,20.8-16.9,38.6-31.3,54c-21,22.6-46.7,38.4-74.7,50.6c-15.8,6.9-32.1,12.4-49,16
-			                    c-10.2,2.1-20.5,3.8-30.9,4.7c-12.7,1.1-25.5,1.6-38.2,1.4c-9.7-0.2-19.3-1.6-28.9-3c-13.6-2-26.9-5.6-39.7-10.6
-			                    c-23.5-9.2-44.8-21.5-60.8-41.5c-10.8-13.5-17.4-28.9-19.2-46.2c-1.1-10.5-0.9-20.9,0.9-31.3c0.2-1,1.7-2.5,2.6-2.6
-			                    c13.5-0.2,27.1-0.1,40.6-0.1c0.4,0,0.9,0.3,1.4,0.4c-0.5,5.1-1.1,10-1.5,15c-1.4,22.1,3,42.7,16.4,60.8
-			                    c10.3,13.9,23.8,24,39.3,31.5c12.4,6,25.5,10.1,39,11.4c13.8,1.3,27.9,0.6,41.8,0.3c13-0.4,25.5-3.6,37.9-7.6
-			                    c20.1-6.4,38.5-15.9,55.4-28.4c17.9-13.2,32.8-29.1,43-49c3.7-7.3,6.3-15.2,9.5-22.7c0.6-1.3,2.1-3,3.2-3.1
-			                    C440.1,372.1,454.4,372.2,469,372.2z M298,597.9c-164.3,0-298-133.7-298-298C0,135.6,133.7,2,298,2s298,133.7,298,298
-			                    C595.9,464.2,462.3,597.9,298,597.9z M298,27.3c-150.3,0-272.7,122.3-272.7,272.7c0,150.3,122.3,272.7,272.7,272.7
-			                    c150.3,0,272.7-122.3,272.7-272.7C570.6,149.6,448.3,27.3,298,27.3z" />
-                     </clipPath>
-                <clipPath id="logoBGClip">
-                      
-                <circle cx="299" cy="300" r="290" fill="#fff" />
-                        </defs>
-                <g clip-path="url(#logoBGClip)">
-                <circle class="clippesd" cx="-300" cy="300" r="300" fill="#fff" />
-                     </g>
-                <g clip-path="url(#logoClip)">
-                        
-                <rect x="0" y="0" width="595.9" height="600" fill="#fff"></rect>
-                <circle class="clipped" cx="-300" cy="300" r="300" fill="#0b6983" />
-                     </g>
-                    
-                </svg>
-            </div>
+    <div style="height:100%; position:relative; left:-300px" id="main-container">
+        <div style="display:inline-block; width:300px; height:100%; background:#222; position:absolute;left:0px; top:0px;">
+            <table style="height:100%; width:100%; box-sizing:border-box; border-right:1px #fff solid;" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style ="padding-top:60px;">Menu</td>
+                </tr>
+                <tr>
+                    <td style="padding-top:120px;">
+                        <ul>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Events</a></li>
+                            <li><a href="#" class="prom">Prometheus</a></li>
+                            <li><a href="#">Team</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr style="height:100%;">
+                    <td valign="bottom">
+                        <object style="padding-bottom:30px; height:100px; width:100px;" data="./res/club-logo.svg" type="text/svg+xml"></object>
+                    </td>
+                </tr>
+            </table>
         </div>
-        <div style="position:relative; top:50%; left:50%; height:500px;width:500px; margin-left:-250px; margin-top:-250px;" class="circuitHidden" id="circuit">
+        <div style="display:inline-block; width:100%; height:100%; position:absolute;left:300px; top:0px;">
 
-            <div style="position:absolute; left:71px; top:93px; width:123px; height:103px;">
-                <svg class="angled flipH" height="103" width="125" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     viewbox="0 0 125 103" xml:space="preserve">
-                <circle style="fill:#fff" class="st0" cx="12" cy="12" r="5" />
-                <circle cx="111.99" cy="90.32" r="5" />
-                <polyline points="12,18 12,57 62,57 107,87" />
-                </svg>
-            </div>
-            <div style="position:absolute; left:71px; top:304px; width:123px; height:103px;" class="flipV">
-                <svg class="angled flipH" height="103" width="125" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     viewbox="0 0 125 103" xml:space="preserve">
-                <circle style="fill:#fff" class="st0" cx="12" cy="12" r="5" />
-                <circle cx="111.99" cy="90.32" r="5" />
-                <polyline points="12,18 12,57 62,57 107,87" />
-                </svg>
-            </div>
-            <div style="position:absolute; left:304px; top:93px; width:123px; height:103px;" class="flipV">
-                <svg class="angled" height="103" width="125" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     viewbox="0 0 125 103" xml:space="preserve">
-                <circle style="fill:#fff" class="st0" cx="12" cy="12" r="5" />
-                <circle cx="111.99" cy="90.32" r="5" />
-                <polyline points="12,18 12,57 62,57 107,87" />
-                </svg>
-            </div>
-            <div style="position:absolute; left:304px; top:304px; width:123px; height:103px;">
-                <svg class="angled" height="103" width="125" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     viewbox="0 0 125 103" xml:space="preserve">
-                <circle style="fill:#fff" class="st0" cx="12" cy="12" r="5" />
-                <circle cx=" 111.99" cy="90.32" r="5" />
-                <polyline points="12,18 12,57 62,57 107,87" />
-                </svg>
-            </div>
-
-            <div style="position:absolute; left:330px; top:238px; width:170x; height:35px;">
-                <svg class="horizontal" height="35" width="170" version=" 1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     viewbox="0 0 170 35" xml:space="preserve">
-                <circle style="fill:#fff" class="st0" cx="12" cy="12" r="5" />
-                <circle cx="158" cy="22" r="5" />
-                <polyline points="12,12 97,12 122,22 152,22" />
-                </svg>
-            </div>
-
-
-            <div style="position:absolute; left:0px; top:228px; width:170x; height:35px;">
-                <svg class="horizontal flipH" height="35" width="170" version=" 1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     viewbox="0 0 170 35" xml:space="preserve">
-                <circle style="fill: #fff" class="st0" cx="12" cy="12" r="5" />
-                <circle cx="158" cy="22" r="5" />
-                <polyline points="12,12 97,12 122,22 152,22" />
-                </svg>
-            </div>
-
-            <div style="position:absolute; top:57px; left:238px; width:24px; height:113px;" class="flipV">
-                <svg class="vertical" height="113" width="24" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     viewbox="0 0 24 113" xml:space="preserve">
-                <circle style="stroke: #ff6314; fill:#ff6314" class="st0" cx="12" cy="12" r="5" />
-                <circle style="stroke: #ff6314;" cx="12" cy="101" r="5" />
-                <polyline style="stroke: #ff6314;" points="12,18 12,95" />
-                    </svg>
-            </div>
-
-            <div style="position:absolute; top:330px; left:238px; width:24px; height:113px;">
-                <svg class="vertical" height="113" width="24" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     viewbox="0 0 24 113" xml:space="preserve">
-                <circle style="fill:#fff" class="st0" cx="12" cy="12" r="5" />
-                <circle cx="12" cy="101" r="5" />
-                <polyline points="12,18 12,95" />
-                    </svg>
-            </div>
-            <div style="width:100%; text-align:center; top: 30px; position:absolute;">
-                <a href="#" style="color: #ff6314; text-shadow:0px 1px 1px rgba(0,0,0,0.8);" tag="Promethius 4.0"></a>
-            </div>
-            <div style="width:100%; text-align:center; top: 440px; position:absolute;">
-                <a href="#" style="text-shadow: 0px 1px 1px rgba(0,0,0,0.8)" tag="Alumni"></a>
-            </div>
-            <div style="width:100px; text-align:right; left:-26px; top: 78px; position:absolute;">
-                <a href="#" style="text-shadow: 0px 1px 1px rgba(0,0,0,0.8)" tag="About US"></a>
-            </div>
-            <div style="width:100px; text-align:right; left:-99px; top: 225px; position:absolute;">
-                <a href="#" style="text-shadow: 0px 1px 1px rgba(0,0,0,0.8)" tag="Blog"></a>
-            </div>
-            <div style="width:100px; text-align:right; left:-26px; top: 391px; position:absolute;">
-                <a href="#" style="text-shadow: 0px 1px 1px rgba(0,0,0,0.8)" tag="Timeline"></a>
-            </div>
-            <div style="width:100px; text-align:left; left:426px; top: 78px; position:absolute;">
-                <a href="#" style="text-shadow: 0px 1px 1px rgba(0,0,0,0.8)" tag="Team"></a>
-            </div>
-            <div style="width:100px; text-align:left; left:499px; top: 244px; position:absolute;">
-                <a href="#" style="text-shadow: 0px 1px 1px rgba(0,0,0,0.8)" tag="Events"></a>
-            </div>
-            <div style="width:100px; text-align:left; left:426px; top: 391px; position:absolute;">
-                <a href="#" style="text-shadow: 0px 1px 1px rgba(0,0,0,0.8)" tag="Learn"></a>
-            </div>
             
-        </div>
-        
+            <object style="position:absolute;left:50%;top:50%;margin:-150px 0 0 -100px; height:200px; width:200px;" data="./res/club-logo.svg" type="text/svg+xml"></object>
 
+            <table cellpadding="0" cellspacing="0" style="width:100%; height:100%; position:absolute;">
+                <tr>
+                    <td style="height:100%;"></td>
+                </tr>
+                <tr>
+                    <td style="height: 150px; border-top: 5px solid #7A3A19; box-sizing: border-box;" valign="bottom">
+                        <div style="float:right;margin-right:50px;height:150px;width:175px">
+                            <object data="./res/chair.svg" type="text/svg+xml" style="height:200px;width:175px; margin-top:-50px;"></object>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height:130px; border-top:1px solid #333; box-sizing:border-box; overflow:hidden;" class="footer" valign="middle">
+                        <a href="#">
+                            <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" fill="#fff" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 viewBox="0 0 800 600" enable-background="new 0 0 800 600" xml:space="preserve">
+                                <g>
+                                    <path d="M290.9,350.9c-26.4-21.9-31.5-48.3-16.1-79.8c-10.3-0.6-19.9-1.3-29.6-1.9c-36-3.9-70.1-14.8-96.5-41.8
+		                                c-30.2-30.2-40.5-67.6-34.1-108.7c7.7-50.8,39.2-83.6,85.6-102.9c30.2-12.9,62.4-16.1,95.2-15.4c58.5,0,117.1,0,175.6,0
+		                                c1.3,0,3.2,0,5.1,0c0,1.3,0,1.9-0.6,1.9c-12.2,12.2-25.1,24.4-37.3,36.7c-1.9,1.3-5.1,1.9-7.1,1.9c-14.2,0-27.7,0-43.8,0
+		                                c2.6,1.9,3.9,3.2,5.1,3.9c26.4,17.4,40.5,42.5,45.7,72.7c8.4,45.7-9.7,81.1-43.8,110c-11.6,9.7-23.2,18-33.5,28.3
+		                                c-17.4,17.4-17.4,35.4,0,53.4c3.2,3.2,6.4,7.1,10.3,9.7c12.2,9.7,24.4,18.7,36.7,27.7c20.6,14.8,39.9,30.9,54.7,51.5
+		                                c11.6,16.1,17.4,34.1,19.3,53.4c4.5,52.8-21.2,89.4-63.7,115.8c-30.9,19.3-65.6,27.7-102.3,31.5c-33.5,3.9-66.9,3.2-100.4-1.9
+		                                c-38.6-5.8-74.6-16.7-106.2-40.5C57.3,516.9,63.1,453.2,94,414.6c18-22.5,42.5-36,68.8-45c36.7-12.9,74.6-16.7,112.6-17.4
+		                                c5.1,0,9.7,0,14.8,0C290.2,351.5,290.2,351.5,290.9,350.9z M278,569c5.8-0.6,14.8-0.6,23.2-1.3c27.7-2.6,54.7-9,78.5-25.1
+		                                c29-19.3,43.1-52.1,36-86.2c-5.8-27.7-23.2-47.6-46.3-61.1c-38-22.5-79.1-26.4-121.6-19.3c-30.2,5.1-57.3,17.4-79.8,38.6
+		                                c-21.2,21.2-30.9,45.7-23.2,75.9c5.8,21.9,19.3,39.2,38,52.1C209.8,561.9,241.3,569,278,569z M181.5,118.6
+		                                c1.9,12.2,2.6,24.4,5.8,36c14.2,48.3,44.4,81.1,95.2,90.1c38.6,7.1,70.8-14.8,79.8-52.8c5.8-23.8,3.2-47-3.2-69.5
+		                                c-10.3-34.7-28.3-63.7-60.5-82.4c-34.7-19.9-75.9-12.2-99.1,18.7C187.3,76.2,182.1,96.1,181.5,118.6
+                                        M598.4,8.6c14.8,0,29,0,43.8,0c0,9,0,17.4,0,25.7c0,15.4,0,30.2,0,45.7c0,9.7,0,9.7,9.7,9.7
+		                                c23.2,0,46.3,0,70.1,0c2.6,0,5.1,0,7.7,0c0,13.5,0,26.4,0,39.9c-7.1,0-14.2,0-21.2,0c-19.9,0-39.2,0-59.2,0c-5.1,0-7.1,1.3-7.1,7.1
+		                                c0,22.5,0,45,0,66.9c0,1.9,0,4.5-0.6,7.1c-14.2,0-28.3,0-43.1,0c0-27,0-53.4,0-81.1c-29,0-57.9,0-86.9,0c0-13.5,0-26.4,0-39.9
+		                                c28.3,0,57.3,0,86.2,0C598.4,62.6,598.4,36.3,598.4,8.6z" />
+                                </g>
+                            </svg>
+
+                        </a>
+                        <a href="#">
+                            <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 viewBox="0 0 800 600" fill="#fff" enable-background="new 0 0 800 600" xml:space="preserve">
+                                <path d="M327.9,601.8V318.6h-74.7V216.5h74.7v-87.1C327.9,60.9,372-1.8,474.2-1.8c41.5,0,72.1,4.1,72.1,4.1
+		                            l-2.6,95.4c0,0-31.1-0.5-65.3-0.5c-36.8,0-42.5,17.1-42.5,45.1V217h111l-4.7,102.2H436.3v283.1L327.9,601.8z" />
+                            </svg>
+
+
+                        </a>
+                        <a href="#">
+                            <svg fill="#FFFFFF" version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                 viewBox="0 0 800 600" enable-background="new 0 0 800 600" xml:space="preserve">
+                            <path d="M400.5,600.7c-61.5-1.5-122.1-3-183.1-4.5c-34.5-1-66-31-67.5-65.5c-2-46.5-3-93.1-3-140.1
+	                                c0-23.5,1.5-47,4.5-70c4-31.5,32.5-57,64.5-58.5c32-2,64.5-3,97.1-3.5c58.5-0.5,117.1-0.5,175.6,0c32,0.5,64,1.5,96.1,3
+	                                c36.5,2,65.5,33,66.5,69.5c1,43.5,3,86.6,3,130.1c0,25-1.5,50.5-4.5,75.6c-4,32.5-34.5,58.5-67,59.5
+	                                C521.6,598.2,460.5,599.2,400.5,600.7z M444,374.1c0-1,0-2.5,0-4.5c0-17.5,0-35,0-52.5c0-5.5-2-7.5-7.5-7.5c-8,0-16,0-24,0
+	                                c-5,0-7,1.5-7,7c0,73,0,146.1,0,219.1c0,5,2,6.5,6.5,6.5c7.5,0,14.5,0,22,0c5,0,10,1,10.5-6.5c2,1.5,3.5,2.5,5,3c17,9,43,8,50-18.5
+	                                c1-4,2-8.5,2-13c0-33,0.5-66.5,0-99.6c0-7-1.5-14-4-20.5c-4.5-13-16-21-29.5-20C460,367.6,452.5,371.6,444,374.1z M557.6,463.1
+	                                c2.5,0,4.5,0,6.5,0c15,0,30,0,45,0c4.5,0,7-2,7-6.5c-0.5-16.5,0-33.5-1-50c-1.5-21.5-15-36.5-36-41c-32-6.5-60,15-60.5,47.5
+	                                c-0.5,28.5-0.5,57.5,0,86.1c0.5,12.5,5,24.5,14,33.5c13.5,13.5,30,15,47.5,12c16-3,27.5-12.5,32-28c3-12,3-24.5,4-36.5
+	                                c0.5-4-3-5-6.5-5c-8.5,0-17,0-25.5,0c-5.5,0-7,2-7,7.5c0,6.5-0.5,13-1,19.5c-0.5,5.5-4,8-9.5,8c-5,0-8.5-3-8.5-10
+	                                C557.1,488.1,557.6,476.1,557.6,463.1z M344.4,532.2c0,0,0,1,0,1.5c0.5,8,1,8,8.5,8s15,0,22.5,0c5.5,0,7.5-2,7.5-7.5
+	                                c0-6.5,0-13,0-19.5c0-46,0-92.1,0-138.1c0-7.5-1-8.5-8.5-8.5c-7,0-14,0-21,0c-8,0-9,1-9,9c0,38,0,75.6,0,113.6c0,5.5-1.5,9.5-6,11.5
+	                                c-3.5,1.5-7,2.5-10.5,4c-1-3.5-2-6.5-2.5-10c-0.5-1.5,0-3,0-4.5c0-38.5,0-77.1,0-115.6c0-5.5-2-8-7.5-7.5c-7.5,0-14.5,0-22,0
+	                                c-8,0-9,0.5-9,8.5c0,44,0,88.1,0,131.6c0,5,0.5,10,1.5,14.5c3,15.5,14.5,24,30,20C327.4,541.2,335.9,536.2,344.4,532.2z
+	                                 M259.4,349.5c10,0,19.5,0,28.5,0c5,0,7.5-1.5,7.5-7c-0.5-8.5,0-17.5,0-26c0-5-2-7-7-7c-33.5,0-67,0-100.6,0c-5,0-7,2.5-7,7.5
+	                                c0,8.5,0.5,17,0,25.5c0,5.5,2,7.5,7.5,7.5c9-0.5,18.5,0,28.5,0c0,3,0,5.5,0,7.5c0,19.5,0,39.5,0,59c0,39,0,78.1,0,117.1
+	                                c0,8.5,0.5,9,9,9c8,0,15.5,0,23.5,0c9,0,9.5-0.5,9.5-9.5c0-58.5,0-117.1,0-175.6C259.4,355.1,259.4,352.6,259.4,349.5z" />
+                            <path d="M244.9-0.7c11,0,21,0,31.5,0c1.5,0,3.5,3,4,5c7,26,13.5,52.5,20,79.1c0.5,2,1,3.5,3,5.5c0.5-2,1.5-4,2-6
+	                                c6.5-26,12.5-52.5,19-78.6c1-4,2.5-5.5,6.5-5.5c9.5,0.5,19,0,29,0c-0.5,3-1,5.5-2,7.5c-12,39-24,78.1-36,117.1c-1,4-2,8-2,12
+	                                c0,26.5,0,53,0,79.6c0,2.5,0,4.5,0,7.5c-11.5,0-22.5,0-34,0c0-2-0.5-4.5-0.5-6.5c0-25,0-50.5,0-75.6c0-4.5-0.5-9-2-13.5
+	                                c-12-40.5-24.5-81.1-37-122.1C245.9,4.3,245.9,2.3,244.9-0.7z" />
+                            <path d="M359.4,139.4c0-15-0.5-29.5,0-44.5c1-23.5,14.5-38,37.5-40.5c21-2.5,39,5.5,47,23c2,4.5,3.5,10,4,14.5
+	                                c0.5,32,0.5,64,0,96.6c-0.5,22-17,38-39.5,39c-16.5,1-30.5-3-40.5-16.5c-5-7-8-14.5-8-23C359.4,171.9,359.9,155.9,359.4,139.4
+	                                C359.9,139.4,359.9,139.4,359.4,139.4z M417.5,139.4c0-14,0-28.5,0-42.5c0-8-3-12-9.5-14c-10.5-3-17.5,3-17.5,14.5c0,28,0,56,0,84.6
+	                                c0,2.5,0.5,5,1,7.5c1,5.5,5,9,11,9.5c9,0.5,15-5.5,15-16C418,168.4,417.5,153.9,417.5,139.4z" />
+                            <path d="M562.6,58.9c0,55,0,109.6,0,164.6c-10,0-19.5,0-30,0c0-5.5,0-11,0-18c-3,3-5,5-7,6.5c-7.5,7-15.5,12-25.5,14
+	                                c-11.5,2-20.5-3.5-23.5-15c-1-5-1.5-10-1.5-15c0-44,0-88.1,0-131.6c0-1.5,0-3,0.5-5c10,0,19.5,0,30,0c0,2.5,0,5,0,7.5
+	                                c0,37.5,0,75.1,0,112.1c0,2-0.5,4,0,6c1,3.5,2,9.5,4.5,10.5c3,1.5,8.5,0,12-2c7-4,10.5-9.5,10.5-18.5c-0.5-36-0.5-72.5-0.5-108.6
+	                                c0-2.5,0-4.5,0-7C543.1,58.9,552.6,58.9,562.6,58.9z" />
+                            <path d="M444.5,454.6c0-15,0-30,0-45c0-6,3-8,8-9c5-1,8.5,1.5,9.5,6.5c0.5,3,1,6,1,8.5c0,27,0,54.5,0,81.6
+	                                c0,1,0,2,0,3c-0.5,8-2,10.5-7.5,10.5c-6.5,0-11-4-11-11C444,484.6,444.5,469.6,444.5,454.6z" />
+                            <path d="M577.1,429.6c-7,0-13.5,0-19.5,0c0-7-0.5-14,0-21c0.5-5,4-7,9-7s8,2.5,8.5,7
+	                                C576.6,415.1,576.6,422.1,577.1,429.6z" />
+
+                            </svg>
+
+
+                        </a>
+                    </td>
+                </tr>
+            </table>
+
+
+            <div id="menu" onclick="animateMenuButton()" style="position:absolute; left:50px; top:50px; height:30px; width:30px; cursor:pointer;">
+                <svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     viewBox="0 0 700 700" xml:space="preserve">
+                <line x1="0" y1="100" x2="700" y2="100" style="stroke:#fff;stroke-width:100" />
+                <line x1="0" y1="350" x2="700" y2="350" style="stroke:#fff;stroke-width:100" />
+                <line x1="0" y1="600" x2="700" y2="600" style="stroke:#fff;stroke-width:100" />
+                </svg>
+
+            </div>
+        </div>
     </div>
 </body>
-
-<script>
-    function $id(obj) {
-        return document.getElementById(obj);
-    }
-
-    window.onmousemove = function (e) {
-
-        if (!bubble)
-            return;
-        var mx = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
-        var my = (e.clientY - window.innerHeight / 2) / (window.innerWidth / 2);
-
-        mx = -1 * mx;
-        my = -1 * my;
-
-        logoX = 175 + 50 * mx;
-        logoY = 175 + 50 * my;
-
-    };
-    window.onmouseout = function (e) { logoX = 175; logoY = 175; };
-
-    var xp = 175, yp = 175;
-    var logo = $id("logo");
-    var loop = setInterval(function () {
-        xp += (logoX - xp) / 6;
-        yp += (logoY - yp) / 6;
-        logo.style.margin = yp + "px 0 0 " + xp + "px";
-        logoScaleActual += (logoScale - logoScaleActual) / 3;
-        $id('logo').style.webkitTransform = "scale(" + logoScaleActual + "," + logoScaleActual + ")";
-    }, 30);
-</script>
-
-<script>
-
-    function generateScramble(x) {
-        var i;
-        var text = "";
-        for (i = 0; i < x; i++)
-            text += String.fromCharCode(parseInt(255 * Math.random()));
-        return text;
-    };
-
-    function shuffle(text) {
-        return text.split('').sort(function () { return 0.5 - Math.random(); }).join('');
-    };
-
-
-    function deleteObj(obj) {
-        delete obj;
-    }
-
-    scramble = function (obj, scrambletext) {
-        this.scrambles = "@#$%&()";
-        //this.text = scrambles;
-        this.i = 0;
-
-        this.generateScramble = function (x) {
-            var i;
-            var text = "";
-            for (i = 0; i < x; i++)
-                //text += String.fromCharCode(parseInt(255 * Math.random()));
-                text += parseInt(Math.random()*2 - 0.01);
-                return text;
-        };
-
-        this.scrambles = this.generateScramble(scrambletext.length);
-
-        this.shuffle = function (text) {
-            return text.split('').sort(function () { return 0.5 - Math.random(); }).join('');
-        };
-
-        this.scrambleloop = function () {
-            var i = this.i;
-            text = scrambletext.substr(0, i) + this.shuffle(this.scrambles).substr(i, scrambletext.length - i);
-            //text=scrambletext.substr(0,i) + this.generateScramble(scrambletext.length-i);
-
-            this.i++;
-            i++;
-            if (i <= scrambletext.length) {
-                obj.innerHTML = text;
-                setTimeout(this.scrambleloop.bind(this), 40);
-            }
-            else {
-                obj.innerHTML = text.substr(0, text.length);
-            }
-            obj.className = "bright";
-            delete this;
-        };
-
-        this.scrambleloop();
-
-
-    };
-
-    var links=$id("circuit").getElementsByTagName("a");
-    for(var i=0;i< links.length;i++)
-        links[i].onmouseover = function () { new scramble(this, this.getAttribute('tag')); };
-
-    function animateCircuitLinks() {
-        var links = $id("circuit").getElementsByTagName("a");
-        for (var i = 0; i < links.length; i++)
-            links[i].onmouseover();
-    }
-       
-    $id("logo").onmouseleave = function () {
-        logoScale = 1;
-    }
-
-    $id("logo").onmouseenter = function () {
-        if (!bubble)
-            return;
-        this.className = 'mouseHover';
-        clearTimeout(t);
-        logoScale = 1.2;
-        t = setTimeout(function () { document.getElementById('logo').className = ''; }, 600);
-    }
-
-    $id("logo").onclick = function () {
-        document.getElementById('circuit').className = 'circuitVisible';
-        bubble = false;
-        logoY = logoX = 175;
-        logoScale = 1;
-        setTimeout(animateCircuitLinks, 1000);
-    }
-</script>
-
 </html>
