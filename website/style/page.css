@@ -1,0 +1,105 @@
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url(../fonts/BebasNeue.woff) format('woff');
+}
+body,html {
+    background: #24C7ED;
+    margin:0px;
+    padding:0px;
+    height:100%;
+    font-family:'Bebas Neue';
+    font-size:24px;
+    overflow:hidden;
+}
+
+table,td,tr {
+    padding:0px;
+    border-spacing:0px;
+}
+
+table {
+    color:#fff;
+    table-layout:fixed;
+    overflow:hidden;
+    font-size:36px;
+}
+
+
+td {
+    text-align:center;
+}
+
+ul {
+    list-style:none;
+    margin:0px;
+    font-size:26px;
+    font-weight:300;
+    padding:0px;
+}
+li a, li a:visited {
+    border-bottom: 1px solid #fff;
+    padding: 8px 0 7px 118px;
+    text-align: left;
+    box-sizing: border-box;
+    display:block;
+    width:100%;
+    color:#fff;
+    text-decoration: none;
+}
+
+li a.prom,li a.prom:visited {
+    color:#ff5500;
+}
+
+@-webkit-keyframes closeMenu {
+    from {
+        left:0px;
+    }
+    to {
+        left:-300px;
+    }
+}
+
+@-webkit-keyframes openMenu {
+    to {
+        left: 0px;
+    }
+}
+
+#main-container.close {
+    -webkit-animation: closeMenu 0.4s cubic-bezier(.6,0,.4,1);
+    -webkit-animation-fill-mode: forwards;
+}
+
+#main-container.open {
+    -webkit-animation: openMenu 0.4s cubic-bezier(.6,0,.4,1);
+    -webkit-animation-fill-mode: forwards;
+}
+
+.footer a, .footer a:visited {
+    display: inline-block;
+    width: 28px;
+    height: 21px;
+    margin: 0 40px 0 40px;
+}
+.footer a svg {
+    height:100%;
+    width:100%;
+    transition: 0.3s ease-out;
+}
+
+.footer a:hover svg {
+    transform: scale(1.5,1.5);
+}
+
+.footer a:nth-child(1):hover svg {
+    fill: #EE3032;
+}
+
+.footer a:nth-child(2):hover svg {
+    fill: #325C94;
+}
+
+.footer a:nth-child(3):hover svg {
+    fill: #F20026;
+}

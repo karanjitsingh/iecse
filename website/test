@@ -1,0 +1,16 @@
+<html>
+<head
+
+</head>
+
+<body>
+<table cellpadding="0" cellspacing="0" style="width:100%; height:100%; border-spacing:0px; table-layout:fixed;">
+                    <tr>
+                        <td style="font-family:arial;;height:100%; border:0px solid; padding:0px; margin:0px; border:5px solid #fff; vertical-align:bottom;">
+                            <span style="background:#fff; display:inline-block">sdf</span><div style="border:0px solid;">
+                            <img style="background:#000 display:inline-block; height:300px; border:10px solid #fff;" src="./res/lamp.svg"></img></div></td>
+                    </tr>
+                </table>
+</body>
+
+</html>
