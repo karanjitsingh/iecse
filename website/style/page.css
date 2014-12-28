@@ -15,6 +15,7 @@ body,html {
 table,td,tr {
     padding:0px;
     border-spacing:0px;
+    border:0px solid;
 }
 
 table {
