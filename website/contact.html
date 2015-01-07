@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="./style/page.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <script>
         var animatingMenuButton = false;
         var timer;
@@ -70,21 +71,29 @@
         <div style="display:inline-block; width:100%; height:100%; position:absolute;left:300px; top:0px;">
 
             
-            <img style="position:absolute;left:37%;top:30%; ; height:26%; width:26%;" src="./res/club-logo.svg"></img>
+            <img style="position:absolute;left:43%;top:7%; height:14%; width:14%;" src="./res/club-logo.svg"></img>
             <div style="width:100%; height:65%; position:relative;">
-                <img style="display:inline; height:50%; border:0px solid #fff; position:absolute; bottom:0px; left:15%;" src="./res/lamp.svg"/>
-                <img style="display:inline; height:23%; border:0px solid #fff; position:absolute; bottom:0px; left:22%;" src="./res/speaker-left.svg"/>
-                <img style="display:inline; height:23%; border:0px solid #fff; position:absolute; bottom:0px; left:28%;" src="./res/speaker-right.svg"/>
-                <img style="display:inline; height:13%; border:0px solid #fff; position:absolute; bottom:0px; left:33%;" src="./res/calendar.svg"/>
-                <img style="display:inline; height:11%; border:0px solid #fff; position:absolute; bottom:0px; left:55%;" src="./res/telephone.svg"/>
-                <img style="display:inline; height:3%; border:0px solid #fff; position:absolute; bottom:0px; left:63%;" src="./res/coffee-mug.svg"/>
-                <img style="display:inline; height:10%; border:0px solid #fff; position:absolute; bottom:0px; left:67%;" src="./res/pen-stand.svg"/>
-                <img style="display:inline; height:22%; border:0px solid #fff; position:absolute; bottom:0px; left:70%;" src="./res/imac.svg"/>
-                <img style="display:inline; height:2%; border:0px solid #fff; position:absolute; bottom:0px; left:78%;" src="./res/mouse.svg"/>
-                <img style="display:inline; height:7%; border:0px solid #fff; position:absolute; bottom:0px; left:82%;" src="./res/coke-can.svg"/>
+                <div style="display:inline; height:220px; width:290px; border:0px solid #fff; position:absolute; bottom:20px; left:17%;">
+                    <table style="height:100%; width:100%;" class="contactForm">
+                        <tr>
+                            <td><input type=text style="float:left;" placeholder="Name"/></td>
+                            <td><input type=text style="float:right;" placeholder="Subject"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan=2 style="height:100%;">
+                                <textarea placeholder="Message"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan=2><input type=button value="Send"/></td>
+                        </tr>
+                    </table>
+                </div>
+                <img style="display:inline; height:55%; border:0px solid #fff; position:absolute; bottom:0px; left:58%;" src="./res/telephone.svg"/>
+                <img style="display:inline; height:18%; border:0px solid #fff; position:absolute; bottom:0px; left:80%;" src="./res/coffee-mug.svg"/>
             </div>
-            <div style="height: 23%; border-top: 5px solid #7A3A19; box-sizing: border-box; width:100%;">
-                <div style="float:right;height:100%;top:-25%;right:5%; position:relative;">
+            <div style="height: 23%; border-top: 5px solid #7A3A19; box-sizing: border-box; width:100%;" class="small">
+                <div style="float:right;height:100%;top:-25%;right:5%; position:relative; display:none;">
                     <img src="./res/chair.svg" style="height:125%;"></img>
                 </div>
             </div>
@@ -177,6 +186,8 @@
                 </svg>
 
             </div>
+
+            <span style="line-height:30px; font-size:35px; font-family:'Bebas Neue'; color:#fff; position:absolute; left:125px; top:52px; ">Contact</span>
         </div>
     </div>
 </body>
