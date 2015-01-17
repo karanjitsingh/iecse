@@ -1,0 +1,92 @@
+<html>
+<body>
+<audio volume="0.1" loop id="player" src="loudpipes.mp3" autoplay="" controls="" style="display:none;"></audio>
+<canvas id="canvas" height="600" width="1024" ></canvas>
+
+<script>
+
+function $id(obj) {
+	return document.getElementById(obj);
+}
+
+var canvas = $id("canvas");
+var ctx = canvas.getContext("2d");
+
+
+window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
+
+
+    window.player = document.getElementById('player');
+    context = new AudioContext();
+    source = context.createMediaElementSource(player);
+    analyser = context.createAnalyser();
+    source.connect(analyser);
+    analyser.connect(context.destination);
+
+    player.volume = 0.1;
+
+ 	var frequencyData = new Uint8Array(analyser.frequencyBinCount);
+ 
+
+ 	ctx.strokeStyle="rgba(255,0,0,0.5)";
+ 	ctx.lineWidth="2";
+
+  function renderFrame() {
+  	ctx.clearRect(0,0,1024,600);
+    analyser.getByteFrequencyData(frequencyData);
+
+    //var data = "";
+
+    var sum=0, sum2=0;
+
+	var n = 300;
+	var n2= frequencyData.length - n;
+    document.title = frequencyData.length;
+    for(var i =0 ;i<50;i++) {
+    	ctx.beginPath();
+        sum+=frequencyData[i];
+        sum2+=frequencyData[300+i];
+    	ctx.moveTo(i*5+3,600);
+    	ctx.lineTo(i*5+3,600 - frequencyData[i]);
+    	ctx.stroke();
+    	ctx.closePath();
+
+
+        ctx.beginPath();
+        sum+=frequencyData[i];
+        ctx.moveTo(i*5+3,600);
+        ctx.lineTo(i*5+3,600 - frequencyData[300+i]);
+        ctx.stroke();
+        ctx.closePath();
+
+	}
+
+    sum/=50;
+    sum/=255;
+    sum*=100;
+
+    sum2/=50;
+    sum2/=255;
+    sum2*=50;
+
+    ctx.strokeStyle="#ff0000";
+
+    ctx.beginPath();
+    ctx.arc(512,100,sum,Math.PI*2, false);
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.closePath();
+
+    ctx.beginPath();
+    ctx.arc(512,100,sum2,Math.PI*2, false);
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.closePath();
+
+
+}
+
+setInterval(renderFrame,30);
+</script>
+</body>
+</html>
