@@ -1,4 +1,4 @@
-<div style="position:absolute; bottom:10%; right:4%; width:70%; height:175px;">
+<div style="position:absolute; bottom:10px; right:4%; width:70%; height:250px;">
     <style>
         table.team {
             position: absolute;
@@ -6,14 +6,14 @@
             top:0px;
         }
 
-        @-webkit-keyframes fadeInOutTeam2 {
+        @-webkit-keyframes fadeInOutTeam2{
             0%{opacity: 0;}
             45%{opacity: 0;}
             50%{opacity: 1;}
             95%{opacity:1;}
             100%{opacity:0;}
         }
-        @-webkit-keyframes fadeInOutTeam1 {
+        @-webkit-keyframes fadeInOutTeam1{
             0%{opacity: 1;}
             45%{opacity: 1;}
             50%{opacity: 0;}
@@ -21,23 +21,42 @@
             100%{opacity: 1;}
         }
 
-        #team_1, table.page_dot td:nth-child(1) div{
-            -webkit-animation: fadeInOutTeam1 10s ease-out;
-            -webkit-animation-iteration-count: infinite;
-            opacity: 1;
+        @-moz-keyframes fadeInOutTeam2{
+            0%{opacity: 0;}
+            45%{opacity: 0;}
+            50%{opacity: 1;}
+            95%{opacity:1;}
+            100%{opacity:0;}
+        }
+        @-moz-keyframes fadeInOutTeam1{
+            0%{opacity: 1;}
+            45%{opacity: 1;}
+            50%{opacity: 0;}
+            95%{opacity: 0;}
+            100%{opacity: 1;}
         }
 
-        #team_2, table.page_dot td:nth-child(3) div {
-            -webkit-animation: fadeInOutTeam2 10s ease-out;
-            -webkit-animation-iteration-count: infinite;
-            opacity: 0;
+        @keyframes fadeInOutTeam2{
+            0%{opacity: 0;}
+            45%{opacity: 0;}
+            50%{opacity: 1;}
+            95%{opacity:1;}
+            100%{opacity:0;}
         }
+        @keyframes fadeInOutTeam1{
+            0%{opacity: 1;}
+            45%{opacity: 1;}
+            50%{opacity: 0;}
+            95%{opacity: 0;}
+            100%{opacity: 1;}
+        }
+
 
         table.members {
             margin:0 auto 0 auto;
         }
     	table.members td {
-    		width:120px;
+    		width:140px;
             padding: 0 5px 0 5px;
             padding-bottom: 0px;
     	}
@@ -48,8 +67,8 @@
     	}
 
         table.members div.member_image {
-            width:90px;
-            height:90px;
+            width:80px;
+            height:80px;
             display:block;
             margin:0 auto 0 auto;
             border:2px solid #fff;
@@ -78,7 +97,7 @@
         <?php
 
 
-            $template = '<td style="padding-bottom:20px;"><div class="member_image" style="background:url(#image#); background-position:#imagepos#; background-size:#imagesize#"></div><span class="heading">#name#</span><span>#title#</span></td>';
+            $template = '<td><div class="member_image" style="background:url(#image#); background-position:#imagepos#; background-size:#imagesize#"></div><span class="heading">#name#</span><span>#title#</span></td>';
             $stream = fopen("team.json", "r");
             $data = fread($stream, filesize("team.json"));
 
@@ -97,19 +116,6 @@
             }
             echo "</tr>";
 
-        ?>
-    </table>
-    <table class="team members" id="team_2">
-        <?php
-
-
-            $template = '<td style="padding-bottom:20px;"><div class="member_image" style="background:url(#image#); background-position:#imagepos#; background-size:#imagesize#"></div><span class="heading">#name#</span><span>#title#</span></td>';
-            $stream = fopen("team.json", "r");
-            $data = fread($stream, filesize("team.json"));
-
-            $json = json_decode($data);
-
-
             echo "<tr>";
             for($i=0;$i < count($json->team->row2); $i++)
             {
@@ -123,6 +129,7 @@
                 echo $member;
             }
             echo "</tr>";
+            fclose($stream);
         ?>
     </table>
 

@@ -1,35 +1,47 @@
-var loadingBar = '<table class="loading"><tr><td><div></div><div></div><div></div></td></tr></table>';
+
+var NProgressTimer;
+    
+var xmlhttp;
+if (window.XMLHttpRequest) {
+    xmlhttp = new XMLHttpRequest()
+} else {
+    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP")
+}
 
 function loadPage(page) {
     if(page=="home")
     {
-        hidePage(true);
+        xmlhttp.abort();
+        NProgress.done();
+        hidePage();
         return;
     }
 
-    hidePage(false);
+    hidePage();
 
-    var xmlhttp;
-    if (window.XMLHttpRequest) {
-        xmlhttp = new XMLHttpRequest()
-    } else {
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP")
-    }
+
 
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            displayPage(xmlhttp.responseText)
+            displayPage(xmlhttp.responseText);
+            clearInterval(NProgressTimer);
+            NProgress.done();
         }
     };
 
     xmlhttp.open("POST", "/data/" + page + ".php", true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
     xmlhttp.send();
+    NProgress.start();
+    clearInterval(NProgressTimer);
+    NProgressTimer = setInterval(function(){NProgress.inc()},500);
+
 }
 
 var loadTimer;
 
-function hidePage(noload) {
+function hidePage() {
     clearTimeout(loadTimer);
     var div=$id("ajax_content");
     var div2 = $id("ajax_content_2")
@@ -39,21 +51,20 @@ function hidePage(noload) {
     loadTimer = setTimeout(function() {
             div.innerHTML = "";
             div2.innerHTML = "";
+            div.style.display="none";
+            div2.style.display="none";
     },300);
 
-    if(!noload)
-        $id("page_title_container").className="loading";
-    else
-        $id("page_title_container").removeAttribute("class");
 }
 
 function displayPage(msg) {
     clearTimeout(loadTimer);
     var div=$id("ajax_content");
     var div2 = $id("ajax_content_2")
+    div.style.display="block";
+    div2.style.display="block";
 
     loadTimer = setTimeout(function() {
-        $id("page_title_container").removeAttribute("class");
         if(msg.indexOf("##")==-1){
             div.innerHTML = msg;
             div.style.opacity=1;

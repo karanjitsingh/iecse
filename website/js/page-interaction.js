@@ -1,15 +1,33 @@
 function toggleLights(e) {
 	if($id("onoffswitch").checked == true){
 		$id("night_cover").style.display = "block";
+		$id("night_cover").style.zIndex = "10";
 		$id("top_container").className = "night";
+
+		if($id("logo").className == "")
+			$id("logo").className = "night";
+		else if($id("logo").className == "small")
+			$id("logo").className = "small night";
+
 	}
 	else{
+		if($id("logo").className == "night")
+			$id("logo").className = "";
+		else if($id("logo").className == "small night")
+			$id("logo").className = "small";
+
 		$id("top_container").removeAttribute("class");
+		$id("night_cover").style.zIndex = "initial";
 		$id("night_cover").style.display = "none";
 	}
 }
 
+var context, analyser,source;
+
 function initiatePlayer() {
+
+	if(!AudioContext)
+		return;
 	window.player = document.getElementById('audio_player');
 	context = new AudioContext();
 	source = context.createMediaElementSource(player);
@@ -17,9 +35,11 @@ function initiatePlayer() {
 	source.connect(analyser);
 	analyser.connect(context.destination);
 	frequencyData = new Uint8Array(analyser.frequencyBinCount);
+	
 }
 
-window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
+window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.msAudioContext || 0;
+
 var frequencyData, speakerTimer; var soundToggle = false;
 
 function toggleSound() {
@@ -50,7 +70,6 @@ function renderFrame() {
 
 	var n = 300;
 	var n2= frequencyData.length - n;
-    document.title = frequencyData.length;
     for(var i =0 ;i<frequencyData.length;i++) {
     	//data+=frequencyData[i] + "<br />";
     	if(i+1 <= 50)

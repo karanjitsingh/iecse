@@ -76,6 +76,8 @@
                     echo $event;
                 }
 
+                fclose($stream);
+
             ?>
         </tr>
 </table>

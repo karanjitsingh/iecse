@@ -1,0 +1,129 @@
+{ "team" : {
+		"row1": [{
+			"name": "Siddhant Sinha",
+			"image": "/images/team/Siddhant-Sinha.jpg",
+			"imagepos" : "-10px 0px",
+			"imagesize" : "",
+			"title": "Chairperson"
+		},
+		{
+			"name": "name",
+			"image" : "",
+			"imagepos" : "0px 0px",
+			"imagesize" : "",
+			"title": "title"
+		},
+		{
+			"name": "name",
+			"image" : "",
+			"imagepos" : "0px 0px",
+			"imagesize" : "",
+			"title": "title"
+		},
+		{
+			"name": "name",
+			"image" : "",
+			"imagepos" : "0px 0px",
+			"imagesize" : "",
+			"title": "title"
+		},
+		{
+			"name": "name",
+			"image" : "",
+			"imagepos" : "0px 0px",
+			"imagesize" : "",
+			"title": "title"
+		},
+		{
+			"name": "name",
+			"image" : "",
+			"imagepos" : "0px 0px",
+			"imagesize" : "",
+			"title": "title"
+		}],
+		"row2": [{
+			"name": "name",
+			"image" : "",
+			"imagepos" : "0px 0px",
+			"imagesize" : "",
+			"title": "title"
+		},
+		{
+			"name": "name",
+			"image" : "",
+			"imagepos" : "0px 0px",
+			"imagesize" : "",
+			"title": "title"
+		},
+		{
+			"name": "name",
+			"image" : "",
+			"imagepos" : "0px 0px",
+			"imagesize" : "",
+			"title": "title"
+		},
+		{
+			"name": "name",
+			"image" : "",
+			"imagepos" : "0px 0px",
+			"imagesize" : "",
+			"title": "title"
+		},
+		{
+			"name": "name",
+			"image" : "",
+			"imagepos" : "0px 0px",
+			"imagesize" : "",
+			"title": "title"
+		},
+		{
+			"name": "name",
+			"image" : "",
+			"imagepos" : "0px 0px",
+			"imagesize" : "",
+			"title": "title"
+		}]
+	},
+	"dev" : [{
+			"name": "Karan Jit Singh",
+			"image" : "",
+			"imagepos" : "0px 0px",
+			"imagesize" : "",
+			"title": "title"
+		},
+		{
+			"name": "Homer Simpson",
+			"image" : "/images/dev/homer.jpg",
+			"imagepos" : "0px 0px",
+			"imagesize" : "cover",
+			"title": "title"
+		},
+		{
+			"name": "name",
+			"image" : "",
+			"imagepos" : "0px 0px",
+			"imagesize" : "",
+			"title": "title"
+		},
+		{
+			"name": "name",
+			"image" : "",
+			"imagepos" : "0px 0px",
+			"imagesize" : "",
+			"title": "title"
+		},
+		{
+			"name": "name",
+			"image" : "",
+			"imagepos" : "0px 0px",
+			"imagesize" : "",
+			"title": "title"
+		},
+		{
+			"name": "name",
+			"image" : "",
+			"imagepos" : "0px 0px",
+			"imagesize" : "",
+			"title": "title"
+		}]
+}

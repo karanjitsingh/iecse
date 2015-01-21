@@ -57,21 +57,27 @@ function switchStates(href) {
 
     if(href=="prometheus") {
         $id("prometheus").className="visible";
+        $id("menu").className="topmost";
         closeMenu();
         return;
     }
     else
     {
         $id("prometheus").removeAttribute("class");
+        $id("menu").removeAttribute("class");
     }
-    if(href==document.location.host)
+    if(href=="") {
         href="home";
+    }
 
     loadPage(href);
 
     $id("table_items").className=href;
     if(href=="home"){
-        $id("logo").removeAttribute("class");
+        if($id("logo").className == "small night")
+            $id("logo").className = "night";
+        else if($id("logo").className == "small")
+            $id("logo").removeAttribute("class");
         $id("chair").removeAttribute("class");
         $id("page_title").innerHTML = " ";
     }
@@ -85,8 +91,8 @@ function switchStates(href) {
 
 function addClicker(link) {
     link.addEventListener("click", function(e) {
+        e.preventDefault();
         switchStates(link.href);
         //history.pushState(null, null, link.href);
-        e.preventDefault();
     }, false);
 }

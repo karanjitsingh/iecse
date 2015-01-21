@@ -1,0 +1,29 @@
+{ "events" : [
+	{
+		"name": "Event 1",
+		"featured": "true",
+		"url" : "",
+		"image": "",
+		"imagepos" : "0px 0px",
+		"imagesize" : "cover",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. sed diam nonummy nibh euismod"
+	},
+	{
+		"name": "Event 1",
+		"featured": "false",
+		"url" : "",
+		"image": "",
+		"imagepos" : "0px 0px",
+		"imagesize" : "",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. sed diam nonummy nibh euismod"
+	},
+	{
+		"name": "Event 1",
+		"featured": "false",
+		"url" : "",
+		"image": "",
+		"imagepos" : "0px 0px",
+		"imagesize" : "",
+		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. sed diam nonummy nibh euismod"
+	}
+]}
