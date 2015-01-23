@@ -1,6 +1,13 @@
 <html>
+<style>
+body { 
+    transition: background 0.1s ease-in;
+    padding:0px;
+    margin:0px;
+}
+</style>
 <body>
-<audio volume="0.1" loop id="player" src="loudpipes.mp3" autoplay="" controls="" style="display:none;"></audio>
+<audio volume="0.1" loop id="player" src="miami.mp3" autoplay="" controls="" style="display:none;"></audio>
 <canvas id="canvas" height="600" width="1024" ></canvas>
 
 <script>
@@ -11,7 +18,10 @@ function $id(obj) {
 
 var canvas = $id("canvas");
 var ctx = canvas.getContext("2d");
-
+    var W = window.innerWidth;
+    var H = window.innerHeight;
+    canvas.width = W;
+    canvas.height = H;
 
 window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
 
@@ -23,62 +33,78 @@ window.AudioContext = window.AudioContext || window.webkitAudioContext || window
     source.connect(analyser);
     analyser.connect(context.destination);
 
-    player.volume = 0.1;
+    player.volume = 1;
 
  	var frequencyData = new Uint8Array(analyser.frequencyBinCount);
  
 
- 	ctx.strokeStyle="rgba(255,0,0,0.5)";
- 	ctx.lineWidth="2";
+ 	ctx.strokeStyle="rgba(255,0,0,0.2)";
+ 	ctx.lineWidth=W/1024;
 
   function renderFrame() {
-  	ctx.clearRect(0,0,1024,600);
+  	ctx.clearRect(0,0,W,H);
     analyser.getByteFrequencyData(frequencyData);
 
     //var data = "";
 
-    var sum=0, sum2=0;
+    var sum=[0,0,0];
 
 	var n = 300;
 	var n2= frequencyData.length - n;
-    document.title = frequencyData.length;
-    for(var i =0 ;i<50;i++) {
+    for(var i =0 ;i<frequencyData.length;i++) {
     	ctx.beginPath();
-        sum+=frequencyData[i];
-        sum2+=frequencyData[300+i];
-    	ctx.moveTo(i*5+3,600);
-    	ctx.lineTo(i*5+3,600 - frequencyData[i]);
+        if(i<=50) {
+            sum[0]+=frequencyData[+i];
+            sum[1]+=frequencyData[50+i];
+            sum[2]+=frequencyData[100+i];
+        }
+    	ctx.moveTo(W/1024/2 + i * W/1024,H);
+    	ctx.lineTo(W/1024/2 + i * W/1024,H - frequencyData[i]);
     	ctx.stroke();
     	ctx.closePath();
 
 
-        ctx.beginPath();
-        sum+=frequencyData[i];
-        ctx.moveTo(i*5+3,600);
-        ctx.lineTo(i*5+3,600 - frequencyData[300+i]);
-        ctx.stroke();
-        ctx.closePath();
-
 	}
+    for(var i=0;i<3;i++)
+    {
+        sum[i]/=50;
+        sum[i]=sum[i]/255*200;
+        sum[i]= parseInt(sum[i]);
+    }
 
-    sum/=50;
-    sum/=255;
-    sum*=100;
 
-    sum2/=50;
-    sum2/=255;
-    sum2*=50;
 
+    var color= "";
+    for(var i=0;i<3;i++)
+    {
+        sum[i]=(sum[i]).toString(16);
+        if(sum[i].length==1)
+            sum[i]="0" + sum[i];
+        color+=sum[i];
+    }
+
+    color = "#" + color;
+
+    document.body.style.background = color;
+document.title=color;
+    for(var i=0;i<3;i++)
+    {
+        sum[i]/=255;
+        sum[i]*=50;
+
+    }
+
+   
     ctx.strokeStyle="#ff0000";
 
     ctx.beginPath();
-    ctx.arc(512,100,sum,Math.PI*2, false);
+    ctx.arc(512,100,sum[0],Math.PI*2, false);
     ctx.lineWidth = 1;
     ctx.stroke();
     ctx.closePath();
 
     ctx.beginPath();
-    ctx.arc(512,100,sum2,Math.PI*2, false);
+    ctx.arc(512,100,sum[1],Math.PI*2, false);
     ctx.lineWidth = 1;
     ctx.stroke();
     ctx.closePath();

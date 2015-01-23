@@ -1,16 +1,16 @@
-﻿<div style="display:inline; height:240px; width:400px; border:0px solid #fff; position:absolute; bottom:30px; left:10%;">
-    <table style="height:100%; width:100%;" class="contactForm">
+﻿<div style="display:inline; height:50%; width:28%; border:0px solid #fff; position:absolute; bottom:25px; left:10%; padding-right:5px;">
+    <table style="height:100%; width:100%; padding-right:5px; padding-bottom:5px;" class="contactForm">
         <tr>
-            <td><input type=text style="float:left;" placeholder="Name"/></td>
-            <td><input type=text style="float:right;" placeholder="Subject"/></td>
+            <td><input id="contact_name" type=text style="float:left;" onkeydown="clearContactValidationErrors(this)" placeholder="Name"/></td>
+            <td><input id="contact_subject" type=text style="float:right;" onkeydown="clearContactValidationErrors(this)" placeholder="Subject"/></td>
         </tr>
         <tr>
             <td colspan=2 style="height:100%;">
-                <textarea placeholder="Message"></textarea>
+                <textarea id="contact_message" onkeydown="clearContactValidationErrors(this)" placeholder="Message"></textarea>
             </td>
         </tr>
         <tr>
-            <td colspan=2><input type=button value="Send"/></td>
+            <td colspan=2><input id="contact_submit" style="cursor:pointer" onclick="submitContactForm()" type=button value="Send"/></td>
         </tr>
     </table>
 </div>

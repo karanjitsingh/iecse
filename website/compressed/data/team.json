@@ -2,98 +2,98 @@
 		"row1": [{
 			"name": "Siddhant Sinha",
 			"image": "/images/team/Siddhant-Sinha.jpg",
-			"imagepos" : "-10px 0px",
-			"imagesize" : "",
+			"imagepos" : "",
+			"imagesize" : "cover",
 			"title": "Chairperson"
 		},
 		{
-			"name": "name",
-			"image" : "",
-			"imagepos" : "0px 0px",
-			"imagesize" : "",
-			"title": "title"
+			"name": "Mehul Smriti Raje",
+			"image" : "/images/team/Mehul-Smriti-Raje.jpg",
+			"imagepos" : "",
+			"imagesize" : "cover",
+			"title": "Vice Chairperson"
 		},
 		{
-			"name": "name",
-			"image" : "",
-			"imagepos" : "0px 0px",
-			"imagesize" : "",
-			"title": "title"
+			"name": "Aakarsh Singh",
+			"image" : "/images/team/Aakarsh-Singh.jpg",
+			"imagepos" : "",
+			"imagesize" : "cover",
+			"title": "General Secretary Web Admin"
 		},
 		{
-			"name": "name",
-			"image" : "",
-			"imagepos" : "0px 0px",
-			"imagesize" : "",
-			"title": "title"
+			"name": "Ankit Gupta",
+			"image" : "/images/team/Ankit-Gupta.jpg",
+			"imagepos" : "",
+			"imagesize" : "cover",
+			"title": "Head of Finances Logistics Head"
 		},
 		{
-			"name": "name",
-			"image" : "",
-			"imagepos" : "0px 0px",
-			"imagesize" : "",
-			"title": "title"
+			"name": "Rakesh Gangwar",
+			"image" : "/images/team/Rakesh-Gangwar.jpg",
+			"imagepos" : "",
+			"imagesize" : "cover",
+			"title": "Event Management Head Public Relations Officer"
 		},
 		{
-			"name": "name",
-			"image" : "",
-			"imagepos" : "0px 0px",
-			"imagesize" : "",
-			"title": "title"
+			"name": "Neelank Sachan",
+			"image" : "/images/team/Neelank-Sachan.jpg",
+			"imagepos" : "",
+			"imagesize" : "cover",
+			"title": "Lead Graphics Artist Head of Graphics"
 		}],
 		"row2": [{
-			"name": "name",
-			"image" : "",
-			"imagepos" : "0px 0px",
-			"imagesize" : "",
-			"title": "title"
+			"name": "Srivatsa Kumar",
+			"image" : "/images/team/Srivatsa-Kumar.jpg",
+			"imagepos" : "",
+			"imagesize" : "cover",
+			"title": "Technical Head"
 		},
 		{
-			"name": "name",
-			"image" : "",
-			"imagepos" : "0px 0px",
+			"name": "Amrit Ayyar",
+			"image" : "/images/team/Amrit-Ayyar.jpg",
+			"imagepos" : "",
 			"imagesize" : "",
-			"title": "title"
+			"title": "Technical Head"
 		},
 		{
-			"name": "name",
-			"image" : "",
-			"imagepos" : "0px 0px",
+			"name": "Harsh Agarwal",
+			"image" : "/images/team/Harsh-Agarwal.jpg",
+			"imagepos" : "-20px -50px",
 			"imagesize" : "",
-			"title": "title"
+			"title": "Joint Technical Head"
 		},
 		{
-			"name": "name",
-			"image" : "",
-			"imagepos" : "0px 0px",
+			"name": "Pratistha Prasad",
+			"image" : "/images/team/Pratistha-Prasad.jpg",
+			"imagepos" : "-10px -20px",
 			"imagesize" : "",
-			"title": "title"
+			"title": "Head of Publicity"
 		},
 		{
-			"name": "name",
-			"image" : "",
-			"imagepos" : "0px 0px",
-			"imagesize" : "",
-			"title": "title"
+			"name": "Kaushal Saraf",
+			"image" : "/images/team/Kaushal-Sarat.jpg",
+			"imagepos" : "",
+			"imagesize" : "cover",
+			"title": "Sponsorship Head"
 		},
 		{
-			"name": "name",
-			"image" : "",
-			"imagepos" : "0px 0px",
-			"imagesize" : "",
-			"title": "title"
+			"name": "Ruchika Upadhyay",
+			"image" :"/images/team/Ruchika-Upadhyay.jpg",
+			"imagepos" : "",
+			"imagesize" : "cover",
+			"title": "Human Resource and Database Head"
 		}]
 	},
 	"dev" : [{
 			"name": "Karan Jit Singh",
 			"image" : "",
 			"imagepos" : "0px 0px",
-			"imagesize" : "",
+			"imagesize" : "cover",
 			"title": "title"
 		},
 		{
 			"name": "Homer Simpson",
-			"image" : "/images/dev/homer.jpg",
+			"image" : "//images/dev/homer.jpg",
 			"imagepos" : "0px 0px",
 			"imagesize" : "cover",
 			"title": "title"
@@ -102,28 +102,28 @@
 			"name": "name",
 			"image" : "",
 			"imagepos" : "0px 0px",
-			"imagesize" : "",
+			"imagesize" : "cover",
 			"title": "title"
 		},
 		{
 			"name": "name",
 			"image" : "",
 			"imagepos" : "0px 0px",
-			"imagesize" : "",
+			"imagesize" : "cover",
 			"title": "title"
 		},
 		{
 			"name": "name",
 			"image" : "",
 			"imagepos" : "0px 0px",
-			"imagesize" : "",
+			"imagesize" : "cover",
 			"title": "title"
 		},
 		{
 			"name": "name",
 			"image" : "",
 			"imagepos" : "0px 0px",
-			"imagesize" : "",
+			"imagesize" : "cover",
 			"title": "title"
 		}]
 }

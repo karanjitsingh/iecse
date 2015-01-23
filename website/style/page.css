@@ -12,6 +12,14 @@ body,html {
     overflow:hidden;
 }
 
+img {
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -html-user-select:none;
+    -o-user-select:none;
+    user-select:none;
+}
+
 table,td,tr {
     padding:0px;
     border-spacing:0px;
@@ -137,11 +145,11 @@ li a.prom,li a.prom:visited {
     transform: scale(1.5,1.5);
 }
 
-.footer a:nth-child(1):hover svg {
-    fill: #EE3032;
+.footer a:nth-child(2):hover svg {
+    fill: #0982b8;
 }
 
-.footer a:nth-child(2):hover svg {
+.footer a:nth-child(1):hover svg {
     fill: #325C94;
 }
 
@@ -171,11 +179,15 @@ input:-moz-placeholder { color:#fff; }
     width:100%;
     box-sizing: border-box;
     outline:none;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.2);
 
 }
 
 .contactForm textarea {
     font-family: 'Open Sans';
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.2);
     font-weight: 400;
     font-size: 12px;
     background: transparent;
@@ -203,6 +215,7 @@ input:-moz-placeholder { color:#fff; }
     border:none;
     border-radius: 3px;
     outline:none;
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.4);
 }
 
 .contactForm input[type=button]:hover {

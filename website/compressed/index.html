@@ -1,21 +1,46 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <link rel="icon" href="/favicon.ico" type="image/ico" sizes="16x16">
+    <link rel="shortcut icon" type="image/ico" href="/favicon.ico"/>
+    <style type="text/css">
+    #flickerlogo {
+        transition: opacity 0.1s ease-in;
+    }
+    #flickerlogo.close {
+        opacity: 0;
+    }
+    #flickerlogo svg{
+        opacity: 0.1;
+    }
+    #flickerlogo.glow svg{
+        z-index:100;
+        opacity: 1;
+        -webkit-filter: drop-shadow(0px 0px 10px #666);
+        filter: url(/#drop-shadow-white);
+        -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0),
+        Color='#666')";
+        filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#666')";
+    }
+
+    </style>
     <link rel="stylesheet" type="text/css" href="/style/page.css">
     <link rel="stylesheet" type="text/css" href="/style/night.css">
     <link rel='stylesheet' href='/style/nprogress.css'/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <script type="text/javascript" src="/js/side-menu.js"></script>
     <script type="text/javascript" src="/js/page-ajax.js"></script>
     <script type="text/javascript" src="/js/page-interaction.js"></script>
+    <script type="text/javascript" src="/js/submit-contact.js"></script>
     <script src='/js/nprogress.js'></script>
-
+    <title>IE CSE Manipal</title>
 </head>
-<body>
+<body onload="complete()">
     <audio loop id="audio_player" src="/res/loudpipes.mp3" style="display:none;"></audio>
-    <div style="height:100%; position:relative; left:-300px" id="main-container">
+
+    <div style="height:100%; position:relative; left:-300px;" id="main-container">
         <div style="display:inline-block; width:300px; height:100%; background:#222; position:absolute;left:0px; top:0px;">
             <table style="height:100%; width:100%; box-sizing:border-box; border-right:1px #fff solid;" cellpadding="0" cellspacing="0">
                 <tr>
@@ -24,17 +49,17 @@
                 <tr>
                     <td style="padding-top:120px;">
                         <ul id="menu_links">
-                            <li><a href="/about/">About</a></li>
-                            <li><a href="/events/">Events</a></li>
-                            <li><a href="/prometheus/" class="prom">Prometheus</a></li>
-                            <li><a href="/team/">Team</a></li>
-                            <li><a href="/contact/">Contact</a></li>
+                            <li><a onclick="switchStates('/about/');">About</a></li>
+                            <li><a onclick="switchStates('/events/');">Events</a></li>
+                            <li><a onclick="switchStates('/prometheus/');" class="prom">Prometheus</a></li>
+                            <li><a onclick="switchStates('/team/');">Team</a></li>
+                            <li><a onclick="switchStates('/contact/');">Contact</a></li>
                         </ul>
                     </td>
                 </tr>
                 <tr style="height:100%;">
                     <td valign="bottom">
-                        <a href="/" id="menu_logo"><img style="padding-bottom:30px; height:100px; width:100px;" src="./res/club-logo.svg"></img></a>
+                        <a onclick="switchStates('/');" id="menu_logo"><img style="padding-bottom:30px; height:100px; width:100px;" src="./res/club-logo.svg"></img></a>
                     </td>
                 </tr>
             </table>
@@ -65,17 +90,17 @@
                         <rect x="168.9" y="560.7" fill="#DEDDDD" width="73.5" height="2.5"/>
                     </g>
                 </svg>
-                <img src="/res/calendar.svg" id="calendar_svg"/>
-                <img src="/res/telephone.svg"/>
+                <img class="link" onclick="switchStates('/events/')" src="/res/calendar.svg" id="calendar_svg"/>
+                <img class="link" onclick="switchStates('/contact/')" src="/res/telephone.svg"/>
                 <img src="/res/coffee-mug.svg"/>
-                <img src="/res/pen-stand.svg"/>
-                <img src="/res/imac.svg"/>
+                <img class="link" onclick="switchStates('/team/')" src="/res/pen-stand.svg"/>
+                <img class="link" onclick="switchStates('/about/');" src="/res/imac.svg"/>
                 <img src="/res/mouse.svg"/>
                 <img src="/res/coke-can.svg"/>
                 <div style="width:100%; height:100%; position:absolute; left:0px; top:0px;" id="ajax_content"></div>
             </div>
 
-            <div id="logo"><div><a href="/"><img src="./res/club-logo.svg"></img></a></div></div>
+            <div id="logo"><div><a onclick="switchStates('/');"><img src="./res/club-logo.svg"></img></a></div></div>
             <div style="height: 23%; border-top: 5px solid #7A3A19; box-sizing: border-box; width:100%; position:relative;">
                 <div id="chair">
                     <img src="./res/chair.svg"></img>
@@ -87,37 +112,24 @@
                 <table cellpadding=0 cellspacing=0 style="width:100%; height:100%;">
                     <tr>
                         <td>
-                            <a href="#">
-                                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" fill="#fff" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                     viewBox="0 0 800 600" enable-background="new 0 0 800 600" xml:space="preserve">
-                                    <g>
-                                        <path d="M290.9,350.9c-26.4-21.9-31.5-48.3-16.1-79.8c-10.3-0.6-19.9-1.3-29.6-1.9c-36-3.9-70.1-14.8-96.5-41.8
-                                            c-30.2-30.2-40.5-67.6-34.1-108.7c7.7-50.8,39.2-83.6,85.6-102.9c30.2-12.9,62.4-16.1,95.2-15.4c58.5,0,117.1,0,175.6,0
-                                            c1.3,0,3.2,0,5.1,0c0,1.3,0,1.9-0.6,1.9c-12.2,12.2-25.1,24.4-37.3,36.7c-1.9,1.3-5.1,1.9-7.1,1.9c-14.2,0-27.7,0-43.8,0
-                                            c2.6,1.9,3.9,3.2,5.1,3.9c26.4,17.4,40.5,42.5,45.7,72.7c8.4,45.7-9.7,81.1-43.8,110c-11.6,9.7-23.2,18-33.5,28.3
-                                            c-17.4,17.4-17.4,35.4,0,53.4c3.2,3.2,6.4,7.1,10.3,9.7c12.2,9.7,24.4,18.7,36.7,27.7c20.6,14.8,39.9,30.9,54.7,51.5
-                                            c11.6,16.1,17.4,34.1,19.3,53.4c4.5,52.8-21.2,89.4-63.7,115.8c-30.9,19.3-65.6,27.7-102.3,31.5c-33.5,3.9-66.9,3.2-100.4-1.9
-                                            c-38.6-5.8-74.6-16.7-106.2-40.5C57.3,516.9,63.1,453.2,94,414.6c18-22.5,42.5-36,68.8-45c36.7-12.9,74.6-16.7,112.6-17.4
-                                            c5.1,0,9.7,0,14.8,0C290.2,351.5,290.2,351.5,290.9,350.9z M278,569c5.8-0.6,14.8-0.6,23.2-1.3c27.7-2.6,54.7-9,78.5-25.1
-                                            c29-19.3,43.1-52.1,36-86.2c-5.8-27.7-23.2-47.6-46.3-61.1c-38-22.5-79.1-26.4-121.6-19.3c-30.2,5.1-57.3,17.4-79.8,38.6
-                                            c-21.2,21.2-30.9,45.7-23.2,75.9c5.8,21.9,19.3,39.2,38,52.1C209.8,561.9,241.3,569,278,569z M181.5,118.6
-                                            c1.9,12.2,2.6,24.4,5.8,36c14.2,48.3,44.4,81.1,95.2,90.1c38.6,7.1,70.8-14.8,79.8-52.8c5.8-23.8,3.2-47-3.2-69.5
-                                            c-10.3-34.7-28.3-63.7-60.5-82.4c-34.7-19.9-75.9-12.2-99.1,18.7C187.3,76.2,182.1,96.1,181.5,118.6
-                                            M598.4,8.6c14.8,0,29,0,43.8,0c0,9,0,17.4,0,25.7c0,15.4,0,30.2,0,45.7c0,9.7,0,9.7,9.7,9.7
-                                            c23.2,0,46.3,0,70.1,0c2.6,0,5.1,0,7.7,0c0,13.5,0,26.4,0,39.9c-7.1,0-14.2,0-21.2,0c-19.9,0-39.2,0-59.2,0c-5.1,0-7.1,1.3-7.1,7.1
-                                            c0,22.5,0,45,0,66.9c0,1.9,0,4.5-0.6,7.1c-14.2,0-28.3,0-43.1,0c0-27,0-53.4,0-81.1c-29,0-57.9,0-86.9,0c0-13.5,0-26.4,0-39.9
-                                            c28.3,0,57.3,0,86.2,0C598.4,62.6,598.4,36.3,598.4,8.6z" />
-                                    </g>
-                                </svg>
-                            </a>
-                            <a href="#">
+                            <a href="https://www.facebook.com/iecsemanipal">
                                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                      viewBox="0 0 800 600" fill="#fff" enable-background="new 0 0 800 600" xml:space="preserve">
                                     <path d="M327.9,601.8V318.6h-74.7V216.5h74.7v-87.1C327.9,60.9,372-1.8,474.2-1.8c41.5,0,72.1,4.1,72.1,4.1
                                         l-2.6,95.4c0,0-31.1-0.5-65.3-0.5c-36.8,0-42.5,17.1-42.5,45.1V217h111l-4.7,102.2H436.3v283.1L327.9,601.8z" />
                                 </svg>
                             </a>
-                            <a href="#">
+
+                            <a href="https://twitter.com/iecsemanipal">
+                                <svg version="1.0" xmlns="http://www.w3.org/2000/svg" fill="#fff" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                     viewBox="0 0 800 600" enable-background="new 0 0 800 600" xml:space="preserve">
+                                    <g xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M488.1,92.8c6.1,0,12.7,0,18.8,0c1.9,0.5,4.2,0.9,6.1,0.9c23.4,3.8,43.1,13.6,59.5,30.5    c0.9,0.9,2.3,1.4,3.8,0.9c22-4.7,42.7-12.7,61.9-23.4c0.5-0.5,1.4-0.5,1.9-0.9c-8,24.4-22.5,43.1-44.1,56.7c0.5,0,0.9,0.5,0.9,0.5    c14.5-1.9,28.6-5.2,42.2-10.3c5.2-1.9,10.3-3.8,15-5.6v0.5c-0.5,0.5-0.9,0.9-0.9,1.4c-13.6,19.7-30,36.6-49.2,50.6    c-1.4,0.9-1.9,2.3-1.9,3.8c0,12.2,0,24.4-0.9,36.6c-0.5,9.4-1.9,19.2-4.2,28.6c-2.3,11.7-5.2,23.9-8.9,35.6    c-16.9,53-45,98.4-86.3,135.5c-51.1,45.9-112,68.9-180,72.7c-0.9,0-1.4,0.5-2.3,0.5c-1.9,0-3.8,0-5.6,0c-0.9,0-1.4-0.5-2.3-0.5    c-4.2,0-8,0-12.2,0c-0.9,0-1.4,0.5-2.3,0.5c-1.4,0-2.3,0-3.7,0c-0.5,0-0.9-0.5-1.4-0.5c-5.2-0.5-10.3-0.5-15-0.9    c-8.9-0.9-18.3-1.9-27.2-3.8c-15-2.8-29.5-6.6-44.1-11.7c-20.6-7.5-39.8-16.9-58.6-28.1c-0.5-0.5-1.4-0.9-1.9-1.4    c27.7,2.8,54.4,0.5,81.1-7c26.7-7.5,50.6-19.7,72.7-36.6c-53.4-2.8-87.7-41.2-96.6-72.7c7.5,0.5,15,1.4,22.5,1.4s15.5-1.4,23-3.8    c-23.9-5.6-44.1-17.8-59.5-37c-15.5-19.2-23-41.7-23-67c14.5,8,30,12.2,46.4,13.1c-22-15.9-37-37-42.7-63.7    c-6.1-26.7-1.9-52,11.7-75.9c56.7,66.6,128,103.1,215.6,109.7c0-1.4-0.5-1.9-0.5-2.3c-0.5-4.2-1.4-8.9-1.9-13.1    c-0.5-4.2,0-8.9,0-13.1c0-3.8,0.5-8,0.9-11.7c1.9-10.3,5.2-20.6,9.8-30c3.8-8,8.9-15.5,14.5-22c6.1-7,12.7-13.1,20.6-18.3    c12.2-8,25.3-13.6,39.4-15.9C481.6,93.8,484.8,93.3,488.1,92.8z"/>
+                                        <path fill="#5FA7DC" d="M296.9,507.2c0.9,0,1.4-0.5,2.3-0.5c4.2,0,8,0,12.2,0c0.9,0,1.4,0.5,2.3,0.5    C308.1,507.2,302.5,507.2,296.9,507.2z"/>
+                                    </g>
+                                </svg>
+                            </a>
+                            <a href="https://www.youtube.com/user/iecsemanipal">
                                 <svg fill="#FFFFFF" version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                      viewBox="0 0 800 600" enable-background="new 0 0 800 600" xml:space="preserve">
                                 <path d="M400.5,600.7c-61.5-1.5-122.1-3-183.1-4.5c-34.5-1-66-31-67.5-65.5c-2-46.5-3-93.1-3-140.1
@@ -192,13 +204,8 @@
                 </label>
             </div>
         </div>
-
-
-
-
-
-
     </div>
+    
     <svg xmlns="http://www.w3.org/2000/svg" style="height:100%; width:100%;">
     <filter x="-250%" y="-250%" id="drop-shadow-yellow" width="500%" height="500%">
         <feGaussianBlur in="SourceAlpha" stdDeviation="40"/>
@@ -222,18 +229,51 @@
     </filter>
 </svg>
 
+    <div id="flickerlogo" style="z-index:10000; background:#111; position:absolute; left:0px; top:0px; height:100%; width:100%;">
+        <svg style="position:absolute; left:50%; top:50%; margin-left:-100px; margin-top:-100px; height:200px; width:200px;" version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     viewBox="0 0 595.9 600" enable-background="new 0 0 595.9 600" xml:space="preserve">
+        <g>
+            <g>
+                <path fill="#FFFFFF" d="M498.5,236.1c-15.1,0-29.7,0-44.7,0c0.1-1.3,0.1-2.7,0.3-4.1c1.8-13.5,2.1-26.8-0.9-40.2
+                    c-3.3-14.8-10-27.8-20.4-38.8c-16.4-17.6-36.9-27.7-59.9-33.2c-17.9-4.3-36-5.2-54.2-3.3c-36,3.8-68.1,17.1-96.7,39.2
+                    c-21.6,16.7-37.8,37.5-47.6,63.1c-3.5,9.2-5.8,18.6-6.4,28.6c-0.7,11.2-0.9,22.3,1.6,33.4c2.8,12.4,8.2,23.5,16.2,33.3
+                    c17.9,22,41.7,34,69,40c3.7,0.8,7.6,1.2,12,1.9c8-37.5,15.9-74.7,23.9-112.6c-1.5,0-2.9,0-4.3,0c-32.7,0-65.5,0-98.2,0.1
+                    c-3.3,0-4.3-0.9-4-4.1c0.3-3.2,0.1-6.5,0.1-10.2c36.5,0,72.8,0,109.3,0c1.3-5.7,2.6-11,3.7-16.4c1.7-8.2,3.4-16.4,5.1-24.6
+                    c2.4-11.7,4.9-23.4,7.3-35.2c0.5-2.6,1-5.2,1.8-7.7c0.3-1,1.6-2.5,2.4-2.5c11.2-0.2,22.4-0.1,34.1-0.1c-1.6,7.6-3.1,14.7-4.5,21.8
+                    c-3.5,16.9-7.1,33.7-10.6,50.5c-0.8,3.9-1.7,7.7-2.7,11.5c-0.5,2.1,0,2.9,2.3,3.2c10.7,1.5,21.4,2.9,32,4.9
+                    c24,4.5,45.6,14.7,65.5,28.5c17.6,12.3,31.3,28,37.9,48.7c2.8,8.7,3.6,18,4.8,27.2c0.6,4.9,0.2,9.9-0.1,14.8c-0.1,1.1-1.6,3-2.4,3
+                    c-13.9,0.2-27.8,0.1-41.6,0c-0.1,0-0.2-0.1-0.7-0.6c0.1-1.8,0.3-3.9,0.5-6.1c2-28.7-6-53.8-27.4-73.9
+                    c-11.8-11.1-25.6-18.9-40.8-24.5c-10.1-3.7-20.4-6-31-7.3c-2.4-0.3-3,0.7-3.4,2.5c-4.8,22.7-9.7,45.4-14.5,68.1
+                    c-2.6,12.3-5.2,24.6-7.8,36.9c-0.3,1.5-0.4,3.1-0.6,5c34.7,0,69.2,0,103.7,0c0,5,0,9.5,0,14.5c-1.4,0-2.9,0-4.3,0
+                    c-32.9,0-65.7,0.1-98.6,0c-3.2,0-4.4,0.6-5.1,4.1c-2.9,14.8-6.3,29.6-9.5,44.4c-2.5,11.7-5.1,23.4-7.5,35.2
+                    c-0.5,2.4-1.4,2.9-3.5,2.9c-10.6-0.1-21.3,0-32.8,0c6.1-28.9,12.2-57.8,18.3-86.9c-7.4-1.1-14.5-1.8-21.4-3.3
+                    c-11.5-2.6-23.1-5.1-34.3-9c-16.4-5.7-31.8-13.9-45.7-24.6c-16-12.4-28.5-27.5-34.8-47.1c-4-12.5-5.4-25.3-4.2-38.4
+                    c2.8-29.1,15.5-53.5,34.9-74.8c19.7-21.7,44.1-36.7,70.5-48.8c17.2-7.9,35-14,53.5-17.8c12-2.5,24.2-4.3,36.3-5.3
+                    c12.3-1,24.9-1.7,37.2-0.7c15.4,1.2,30.7,3,45.7,7.4c20.2,5.9,39.2,14.3,56.4,26.5c18.7,13.4,32.8,30.4,39.2,53
+                    c4,14.2,4.6,28.7,2,43.2C498.5,232.7,498.6,234.1,498.5,236.1 M469,372.2c-6.5,20.8-16.9,38.6-31.3,54c-21,22.6-46.7,38.4-74.7,50.6c-15.8,6.9-32.1,12.4-49,16
+                    c-10.2,2.1-20.5,3.8-30.9,4.7c-12.7,1.1-25.5,1.6-38.2,1.4c-9.7-0.2-19.3-1.6-28.9-3c-13.6-2-26.9-5.6-39.7-10.6
+                    c-23.5-9.2-44.8-21.5-60.8-41.5c-10.8-13.5-17.4-28.9-19.2-46.2c-1.1-10.5-0.9-20.9,0.9-31.3c0.2-1,1.7-2.5,2.6-2.6
+                    c13.5-0.2,27.1-0.1,40.6-0.1c0.4,0,0.9,0.3,1.4,0.4c-0.5,5.1-1.1,10-1.5,15c-1.4,22.1,3,42.7,16.4,60.8
+                    c10.3,13.9,23.8,24,39.3,31.5c12.4,6,25.5,10.1,39,11.4c13.8,1.3,27.9,0.6,41.8,0.3c13-0.4,25.5-3.6,37.9-7.6
+                    c20.1-6.4,38.5-15.9,55.4-28.4c17.9-13.2,32.8-29.1,43-49c3.7-7.3,6.3-15.2,9.5-22.7c0.6-1.3,2.1-3,3.2-3.1
+                    C440.1,372.1,454.4,372.2,469,372.2z"/>
+            </g>
+            <g>
+                <path fill="#FFFFFF" d="M298,597.9c-164.3,0-298-133.7-298-298C0,135.6,133.7,2,298,2s298,133.7,298,298
+                    C595.9,464.2,462.3,597.9,298,597.9z M298,27.3c-150.3,0-272.7,122.3-272.7,272.7c0,150.3,122.3,272.7,272.7,272.7
+                    c150.3,0,272.7-122.3,272.7-272.7C570.6,149.6,448.3,27.3,298,27.3z"/>
+            </g>
+        </g>
+        </svg>
+    </div>
+
 </body>
 <script>
-    var links=$id("menu_links").getElementsByTagName("a");
-    for(var i=0;i<links.length;i++){
-        addClicker(links[i]);
-    }
-
-    addClicker($id("logo").getElementsByTagName("a")[0]);
-
-    addClicker($id("menu_logo"));
     $id("onoffswitch").removeAttribute("checked");
     $id("onoffswitch").onchange=toggleLights;
+
+    var loaded= false;
+    var loadFlicker = false;
 
     initiatePlayer();
 
@@ -248,5 +288,53 @@
         $id("table_items").insertBefore(imgSpeakerLeft,$id("calendar_svg"));
         $id("table_items").insertBefore(imgSpeakerRight,$id("calendar_svg"));
     }
+
+    setTimeout(function() {$id("flickerlogo").className="glow";},500);
+    setTimeout(function() {$id("flickerlogo").removeAttribute("class");},600);
+    setTimeout(function() {$id("flickerlogo").className="glow";},1000);
+    setTimeout(function() {$id("flickerlogo").removeAttribute("class");},1100);
+    setTimeout(function() {$id("flickerlogo").className="glow";},1200);
+    setTimeout(function() {$id("flickerlogo").removeAttribute("class");},1300);
+    setTimeout(function() {$id("flickerlogo").className="glow";},1800);
+    setTimeout(function() {loadFlicker = true; showPage();},2500);
+    
+    function showPage() {
+        if(loaded && loadFlicker) {
+            $id("flickerlogo").className="close";
+            setTimeout(function(){document.body.removeChild($id("flickerlogo"));},200);
+        }
+    }
+    
+    function complete() {
+        loaded=true;
+        showPage();
+    };
 </script>
 </html>
+
+<!--?php
+    if(isset($_POST['send']))
+    {
+    $company = $_POST['company'];
+    $name = $_POST['name'];
+    $from = $_POST['email'];
+    $message = $_POST['message'];
+    $to = "misc@iecsemanipal.com";
+    $send_email = mail($to,$company,$message);
+    if($send_email){
+        header("Location: index.php");
+    }
+    }
+    if(isset($_POST['notify']))
+    {
+        $message = $_POST['email'];
+        $company="I want to subscribe to your newletter -".$message."";
+    
+    $to = "newletter@iecsemanipal.com";
+    $send_email = mail($to,$message,$company);
+    if($send_email){
+        header("Location: index.html");
+    }
+    }
+
+    ?-->

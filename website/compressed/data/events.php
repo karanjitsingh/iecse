@@ -1,54 +1,6 @@
 <div style="position:absolute; bottom:20px; left:55%; width:45%">
     <style>
-        table.events {
-            margin: 0 auto 0 auto;
-        }
-    	table.events td {
-    		width:110px;
-    		height:150px;
-            padding: 0 5px 0 5px;
-    	}
-
-    	table.events div.event_image {
-    		width:90px;
-    		height:90px;
-    		display:block;
-    		margin:0 auto 0 auto;
-    		border:2px solid #fff;
-    		border-radius:1000px;
-            margin-bottom: 10px;
-
-    	}
-
-    	table.events a {
-    		display:block;
-    	}
-
-        table.events span {
-            font-size:12px;
-            color:#222;
-            display:inline-block;
-            width:100%;
-        }
-
-        table.events span.heading {
-            color:#fff;
-            font-size: 24px;
-            line-height: 24px;
-            padding: 0px;
-        }
-
-        table.events span.heading div{
-            background: url(/res/white-star.svg) no-repeat;
-            background-size: 22px auto;
-            background-position: 0px 2px;
-            height: 22px;
-            width:24px;
-            display:none;
-        }
-        table.events td.featured span.heading div{
-            display:inline-block;
-        }
+        table.events{margin:0 auto}table.events td{width:110px;height:150px;padding:0 5px}table.events div.event_image{width:90px;height:90px;display:block;margin:0 auto 10px;border:2px solid #fff;border-radius:1000px}table.events a{display:block}table.events span{font-size:12px;color:#222;display:inline-block;width:100%}table.events span.heading{color:#fff;font-size:24px;line-height:24px;padding:0}table.events span.heading div{background:url(/res/white-star.svg) 0 2px/22px auto no-repeat;height:22px;width:24px;display:none}table.events td.featured span.heading div{display:inline-block}
     </style>
     <table class="events">
         <tr>

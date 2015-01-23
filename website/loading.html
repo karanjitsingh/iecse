@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>-->
+    <style type="text/css">
+    body {
+        padding: 0px;
+        margin:0px;
+        overflow: hidden;
+        background: #24C7ED;
+    }
+    #glowlogo {
+        transition: opacity 0.1s ease-in;
+    }
+    #glowlogo.close {
+        opacity: 0;
+    }
+    #glowlogo img{
+        opacity: 0.1;
+    }
+    #glowlogo.glow img{
+        z-index:100;
+        opacity: 1;
+        -webkit-filter: drop-shadow(0px 0px 10px #666);
+        filter: url(/#drop-shadow-white);
+        -ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0),
+        Color='#666')";
+        filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=0, OffY=0, Color='#666')";
+    }
+
+    </style>
+</head>
+<body >
+
+    <div id="glowlogo" style="z-index:10000;background:#111; position:absolute; left:-25%; top:-25%; height:150%; width:150%;">
+        <img style="position:absolute; left:50%; top:50%; margin-left:-100px; margin-top:-100px; height:200px; width:200px;" src="/res/club-logo.svg"></img>
+    </div>
+
+</body>
+<script>
+    function $id(obj)
+    {
+        return document.getElementById(obj);
+    }
+    loaded=false;
+    setTimeout(function() {if(!loaded)$id("glowlogo").className="glow";},500);
+    setTimeout(function() {if(!loaded)$id("glowlogo").removeAttribute("class");},600);
+    setTimeout(function() {if(!loaded)$id("glowlogo").className="glow";},1000);
+    setTimeout(function() {if(!loaded)$id("glowlogo").removeAttribute("class");},1100);
+    setTimeout(function() {if(!loaded)$id("glowlogo").className="glow";},1200);
+    setTimeout(function() {if(!loaded)$id("glowlogo").removeAttribute("class");},1300);
+    setTimeout(function() {if(!loaded)$id("glowlogo").className="glow";},1800);
+    setTimeout(function() {if(!loaded)$id("glowlogo").className="close";},3000);
+    
+</script>
+</html>
