@@ -1,29 +1,27 @@
 { "events" : [
-	{
-		"name": "Event 1",
-		"featured": "true",
+		{
+		"name": "GDG Hackathon",
+		"featured": "false",
 		"url" : "",
-		"image": "",
+		"image": "/images/events/hackathon.png",
 		"imagepos" : "0px 0px",
 		"imagesize" : "cover",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. sed diam nonummy nibh euismod"
+		"description": "<p style=\"width:500px;\">GDG Manipal, in association with Women 	Techmakers presents a Hackathon on Polymer, a web component library for material desgin.</p>"
 	},
 	{
-		"name": "Event 1",
-		"featured": "false",
+		"name": "Web Week",
 		"url" : "",
-		"image": "",
+		"image": "/images/events/webweek.png",
 		"imagepos" : "0px 0px",
-		"imagesize" : "",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. sed diam nonummy nibh euismod"
+		"imagesize" : "cover",
+		"description": "<p style=\"width:500px;\">Workshop dedicated to Web Technologies - We will cover HTML, CSS and famous libraries of JavaScript and JQuery.</p>"
 	},
 	{
-		"name": "Event 1",
-		"featured": "false",
-		"url" : "",
-		"image": "",
+		"name": "Inter Section Coding",
+		"url" : "https://www.facebook.com/events/517731948368475",
+		"image": "/images/events/intersectioncoding.png",
 		"imagepos" : "0px 0px",
-		"imagesize" : "",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. sed diam nonummy nibh euismod"
+		"imagesize" : "cover",
+		"description": "<p>It is time to build your street rep<br />it is time to fight for your variables<br />the first ever inter section coding competition is here<br><br><span style=\"text-decoration:underline\">Prepare for war</p>"
 	}
 ]}

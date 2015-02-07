@@ -32,7 +32,7 @@ function submitContactForm() {
 	if(submitContactFormValidated()) {
 		var name = $id("contact_name").value;
 		var sub = $id("contact_subject").value;
-		var message = $id("contact_subject").value;
+		var message = $id("contact_message").value;
 
 		var xmlhttp;
 		if (window.XMLHttpRequest) {

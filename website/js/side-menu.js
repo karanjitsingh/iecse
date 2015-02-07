@@ -1,7 +1,7 @@
 var animatingMenuButton = false;
 var timer;
 var line1 = 100, line2 = 1, line3 = 600;
-var open = true;
+var open = true; //more like canOpen = true
 function $id(obj) { 
     return document.getElementById(obj);
 }
@@ -20,6 +20,8 @@ function animateMenuButton() {
         animatingMenuButton = true;
         if (open) {
             line1 = 100; line2 = 1; line3 = 600;
+            $id("books").getElementsByTagName("div")[1].style.transform = "rotate(90deg)";
+            $id("books").getElementsByTagName("div")[0].style.transform = "rotate(45deg)";
         }
         else {
             line3 = 100; line2 = 0; line1 = 600;
@@ -82,7 +84,10 @@ function switchStates(href) {
         $id("page_title").innerHTML = " ";
     }
     else {
-        $id("logo").className = "small";
+        if($id("logo").className == "night")
+            $id("logo").className = "small night";
+        else
+            $id("logo").className = "small";
         $id("chair").className = "hidden";
         $id("page_title").innerHTML = capitaliseFirstLetter(href);
     }

@@ -1,0 +1,47 @@
+<div style="
+    position: absolute;
+    background: url(/images/events/intersectioncoding.png);
+    height: 65%;
+    width: 16.86%;
+    right: 18%;
+    background-size: cover;
+    bottom: 39px;
+    transform-origin: 50% 50%;
+    transform: rotate(-5deg);
+    /* box-shadow: 0px 4px 13px rgba(0,0,0,0.5); */
+            "><div style="
+    background: url(/res/tape.png);
+    background-size: cover;
+    height: 20px;
+    width: 55px;
+    position: absolute;
+    left: -20px;
+    transform: rotate(-40deg);
+"></div><div style="
+    background: url(/res/tape.png);
+    background-size: cover;
+    height: 20px;
+    width: 45px;
+    position: absolute;
+    right: -15px;
+    top: 0px;
+    transform: rotate(50deg);
+"></div><div style="
+    background: url(/res/tape.png);
+    background-size: cover;
+    height: 20px;
+    width: 50px;
+    position: absolute;
+    right: -20px;
+    transform: rotate(130deg);
+    bottom: 0px;
+"></div><div style="
+    background: url(/res/tape.png);
+    background-size: cover;
+    height: 20px;
+    width: 55px;
+    position: absolute;
+    left: -20px;
+    bottom: 0px;
+    transform: rotate(40deg);
+"></div></div>
